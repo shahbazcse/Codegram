@@ -1,1 +1,1 @@
-## Social Media App for Coders
+## Codegram - Social Media App for Coders
