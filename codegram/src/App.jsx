@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Booksmarks from "./pages/Bookmarks";
@@ -9,28 +9,18 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import LeftSidebar from "./components/LeftSidebar";
 import RightSidebar from "./components/RightSidebar";
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <div className="App">
-      <nav>
-        <Link to="/home">
-          <img src="" alt="Logo" />
-          <p>Logo/App Name</p>
-        </Link>
-        <input placeholder="Search User" />
-        <button>Dark mode button</button>
-        <Link to="/profile">
-          <img src="" alt="Profile picture" />
-          <p>Profile</p>
-        </Link>
-      </nav>
+      <Navbar/>
       <div>
         <section>
           <LeftSidebar />
         </section>
         <Routes>
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/bookmarks" element={<Booksmarks />} />
           <Route path="/liked" element={<Liked />} />
