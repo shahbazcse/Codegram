@@ -1,9 +1,9 @@
+
+
 export default function RightSidebar() {
   return (
-    <div>
-      <hr />
-      <h1>Right Sidebar</h1>
-      <hr />
+    <div className='hidden lg:block w-[350px] mt-2'>
+      
     </div>
   );
 }
