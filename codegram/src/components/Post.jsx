@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BsChat } from "react-icons/bs";
-import { AiOutlineHeart, AiOutlineShareAlt, AiFillHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { FaRegBookmark } from "react-icons/fa";
+import {BsFillBookmarkFill} from "react-icons/bs"
 
 export default function Post ({ post }){
   const [likes, setLikes] = useState([]);
@@ -15,6 +17,8 @@ export default function Post ({ post }){
   const openModal = () => {
     console.log("opening model ");
   };
+
+  const bookmarked = false;
 
   const dummyImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS9Vu2kHRkEn3qBiH1szO1Qbxt4sP59Lt66Zu-O8tqpxqysYKfeyraCeAC1L0nLonfRjA&usqp=CAU";
 
@@ -51,14 +55,6 @@ export default function Post ({ post }){
               />
             </div>
 
-            <RiDeleteBin5Line
-              className="hoverEffect w-7 h-7 p-1"
-              onClick={(e) => {
-                e.stopPropagation();
-                console.log("Post Deleted");
-              }}
-            />
-
             <div
               className="flex gap-1 items-center"
               onClick={(e) => {
@@ -79,7 +75,28 @@ export default function Post ({ post }){
               )}
             </div>
 
-            <AiOutlineShareAlt className="hoverEffect w-7 h-7 p-1" />
+            <div
+              className="flex gap-1 items-center"
+              onClick={(e) => {
+                e.stopPropagation();
+                likePost();
+              }}
+            >
+              {bookmarked ? (
+                <BsFillBookmarkFill className="hoverEffect w-7 h-7 p-1 text-blue-500" />
+              ) : (
+                <FaRegBookmark className="hoverEffect w-7 h-7 p-1" />
+              )}
+            </div>
+
+            <RiDeleteBin5Line
+              className="hoverEffect w-7 h-7 p-1"
+              onClick={(e) => {
+                e.stopPropagation();
+                console.log("Post Deleted");
+              }}
+            />
+
           </div>
         </div>
       </div>
