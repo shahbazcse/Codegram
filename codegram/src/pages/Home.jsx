@@ -8,6 +8,11 @@ export default function Home() {
         Home
       </div>
       <NewPost />
+        <div className="bg-[#16181C] p-2 m-4 flex gap-4 justify-evenly rounded-md">
+          <div onClick={() => console.log("Displaying Latest Posts")} className="hover:text-blue-600 mt-1 cursor-pointer">Latest</div>
+          <div className="text-2xl">|</div>
+          <div onClick={() => console.log("Displaying Trending Posts")} className="hover:text-red-400 mt-1 cursor-pointer">Trending</div>
+        </div>
       <Feed />
     </div>
   );
