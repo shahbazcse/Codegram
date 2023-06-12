@@ -14,6 +14,10 @@ module.exports = {
         hoverBlue:"#001e39",
         green: "#1c9c76",
       },
+      fontFamily:{
+        logo1: ['Courgette', 'cursive'],
+        logo2: ['Nunito Sans', 'sans-serif']
+      }
     },
   },
   plugins: [],
