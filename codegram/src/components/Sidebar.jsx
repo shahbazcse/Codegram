@@ -9,15 +9,16 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-export default function Sidebar() {
-  const signOut = console.log("Signed Out");
+export default function Sidebar({ isLogin, setIsLogin }) {
   return (
     <div className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-4 fixed h-full border-r border-gray-400 pr-8 xl:pr-8">
       <div className="flex items-center justify-center w-14 h-14 hoverEffect p-0 xl:mb-10 xl:ml-28">
         <Link to="/">
           <div className="flex pt-22">
             <img src={logo} alt="" height="44px" width="44px" />
-            <span className="hidden lg:inline text-white text-3xl font-logo1 ml-3">Codegram</span>
+            <span className="hidden lg:inline text-white text-3xl font-logo1 ml-3">
+              Codegram
+            </span>
           </div>
         </Link>
       </div>
@@ -35,7 +36,7 @@ export default function Sidebar() {
           />
         </div>
 
-        <div onClick={() => console.log("Logged Out")}>
+        <div onClick={() => setIsLogin(false)}>
           <SidebarLink
             className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-52 h-[52px] text-lg font-bold hover:bg-[#1a8cd8]"
             text="Logout"
