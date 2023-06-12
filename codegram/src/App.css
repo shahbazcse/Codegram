@@ -52,7 +52,7 @@
 
  /* Scrollbar */
  ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
   height: 6px;
 }
 
@@ -63,7 +63,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #e1e2e4;
+  background-color: #e1e2e459;
+  opacity: 70;
   border-radius: 100px;
   transition: background-color 0.3s;
 }

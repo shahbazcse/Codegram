@@ -20,7 +20,7 @@ export default function NewPost() {
           className="bg-blue-600 text-lg mt-2 py-1 px-4 rounded-md"
           onClick={(e) => {
             e.stopPropagation();
-            console.log("Created Post");
+            console.log("Created Post:",textField);
           }}
         >
           Post
