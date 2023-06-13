@@ -35,26 +35,28 @@ export default function Sidebar({ isLogin, setIsLogin }) {
           />
         </div>
 
-        <div onClick={() => setIsLogin(false)}>
-          <SidebarLink
-            className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-52 h-[52px] text-lg font-bold hover:bg-[#1a8cd8]"
-            text="Logout"
-            Icon={LogoutIcon}
-          />
-        </div>
-        <Link to="/profile">
-          <div className="text-[#d9d9d9] flex items-center justify-center mt-auto hover:bg-slate-800 hover:rounded-full cursor-pointer md:p-2 md:mt-4 xl:ml-auto xl:-mr-5 xl:mt-3 xl:pr-0 px-4 py-2">
+        <div className="">
+          <div onClick={() => setIsLogin(false)} className="mt-96">
+            <SidebarLink
+              text="Logout"
+              Icon={LogoutIcon}
+            />
+          </div>
+          <Link
+            to="/profile"
+            className="text-[#d9d9d9] mt-4 flex items-center justify-center xl:justify-start hover:bg-slate-800 hover:rounded-full px-1 py-1 w-fit"
+          >
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS9Vu2kHRkEn3qBiH1szO1Qbxt4sP59Lt66Zu-O8tqpxqysYKfeyraCeAC1L0nLonfRjA&usqp=CAU"
               alt=""
-              className="h-10 w-10 rounded-full xl:mr-2.5"
+              className="flex h-10 w-10 rounded-full xl:mr-2.5"
             />
-            <div className="hidden mr-24 xl:inline leading-5">
-              <h4 className="font-bold">{/*{session?.user?.name}*/}User</h4>
-              <p className="text-[#6e767d]">{/*@{session?.user?.tag}*/}@user</p>
+            <div className="hidden mr-4 xl:inline leading-5">
+              <h4 className="font-bold">{/*{session?.user?.name}*/}Shahbaz Ahmad</h4>
+              <p className="text-[#6e767d]">{/*@{session?.user?.tag}*/}@shahbazahmad</p>
             </div>
-          </div>
-        </Link>
+          </Link>
+        </div>
       </div>
     </div>
   );
