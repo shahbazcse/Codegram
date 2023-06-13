@@ -12,7 +12,7 @@ export default function RightSidebar() {
   const dummyImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS9Vu2kHRkEn3qBiH1szO1Qbxt4sP59Lt66Zu-O8tqpxqysYKfeyraCeAC1L0nLonfRjA&usqp=CAU";
 
   return (
-    <div className="hidden justify-end lg:block w-[350px] mt-2">
+    <div className="hidden justify-end lg:block md:block md:mr-4 w-[350px] mt-2">
       <div className="bg-[#16181C] flex gap-2 rounded-full py-2 px-4 text-white items-center text-[20px] sticky top-1 z-10">
         <SearchIcon />
         <input

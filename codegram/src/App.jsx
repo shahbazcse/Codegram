@@ -18,8 +18,8 @@ function App() {
       {isLogin ? (
         <main className="relative max-w-[1400px] mx-auto">
           <Sidebar isLogin={isLogin} setIsLogin={setIsLogin} />
-          <div className="flex gap-6">
-            <section className="sm:ml-[81px] xl:ml-[340px] w-[600px] min-h-screen border-r border-gray-400 text-white py-2">
+          <div className="flex gap-6 xl:ml-0 md:ml-6 sm:ml-6">
+            <section className="sm:ml-[81px] xl:ml-[340px] w-[600px] min-h-screen border-x border-gray-400 text-white py-2">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/explore" element={<Explore />} />

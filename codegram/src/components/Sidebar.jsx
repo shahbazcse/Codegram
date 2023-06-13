@@ -10,7 +10,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 export default function Sidebar({ isLogin, setIsLogin }) {
   return (
-    <div className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-4 fixed h-full border-r border-gray-400 pr-8 xl:pr-8">
+    <div className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-4 fixed h-full pr-8 xl:pr-8">
       <div className="flex items-center justify-center w-14 h-14 hoverEffect p-0 xl:mb-10 xl:ml-28">
         <Link to="/">
           <div className="flex pt-22">
@@ -36,7 +36,7 @@ export default function Sidebar({ isLogin, setIsLogin }) {
         </div>
 
         <div className="">
-          <div onClick={() => setIsLogin(false)} className="mt-96">
+          <div onClick={() => setIsLogin(false)} className="xl:mt-96 sm:mt-[800%]">
             <SidebarLink
               text="Logout"
               Icon={LogoutIcon}
