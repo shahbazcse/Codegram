@@ -17,8 +17,10 @@ export default function Login({ isLogin, setIsLogin }) {
           <span className="text-white text-3xl font-logo1 ml-3">Codegram</span>
         </div>
         <div className="flex-col m-auto h-72 items-center justify-center p-6 rounded-md bg-[#16181ce5] hover:bg-[#202329]">
-          <h1 className="text-white font-bold text-2xl pt-0 p-4 items-center justify-center flex">Login</h1>
-          <hr className="pb-4"/>
+          <h1 className="text-white font-bold text-2xl pt-0 p-4 items-center justify-center flex">
+            Login
+          </h1>
+          <hr className="pb-4" />
           <input
             type="text"
             className="flex p-2 m-4 rounded-sm"
@@ -41,6 +43,12 @@ export default function Login({ isLogin, setIsLogin }) {
               onClick={() => setIsLogin((isLogin) => !isLogin)}
             >
               Guest Login
+            </button>
+            <button
+              className="flex items-end justify-center p-2 ml-4 rounded-sm bg-white text-black"
+              onClick={() => console.log("Signup Form")}
+            >
+              Sign up
             </button>
           </div>
         </div>
