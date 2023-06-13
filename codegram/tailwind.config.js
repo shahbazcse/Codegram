@@ -17,7 +17,7 @@ module.exports = {
       fontFamily:{
         logo1: ['Courgette', 'cursive'],
         logo2: ['Nunito Sans', 'sans-serif']
-      }
+      },
     },
   },
   plugins: [],

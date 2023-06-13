@@ -1,5 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
-import DeveloperModeIcon from "@mui/icons-material/DeveloperMode";
+import { Link } from "react-router-dom";
 import logo from "../assets/messages.png";
 import SidebarLink from "./SidebarLink";
 import HomeIcon from "@mui/icons-material/Home";
