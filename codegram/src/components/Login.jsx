@@ -1,8 +1,18 @@
+import { useContext } from "react";
 import loginBanner from "../assets/Codegram.gif";
 import loginBG from "../assets/loginBG2.jpg";
 import logo from "../assets/messages.png";
+import { AuthContext } from "../contexts/AuthContext";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function Login({ isLogin, setIsLogin }) {
+export default function Login() {
+  const { setIsLoggedIn } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    navigate(location?.state?.from?.pathname);
+  };
   return (
     <div
       className="container max-w-full h-screen flex bg-black relative max-w-screen max-h-screen m-auto"
@@ -12,7 +22,7 @@ export default function Login({ isLogin, setIsLogin }) {
         <img src={loginBanner} className="h-screen" alt="" />
       </div>
       <div className="flex-col m-auto">
-        <div className="lg:hidden flex items-center justify-center p-8">
+        <div className="xl:hidden flex items-center justify-center p-8">
           <img src={logo} alt="" height="44px" width="44px" />
           <span className="text-white text-3xl font-logo1 ml-3">Codegram</span>
         </div>
@@ -34,13 +44,13 @@ export default function Login({ isLogin, setIsLogin }) {
           <div className="flex">
             <button
               className="flex items-end justify-center p-2 ml-4 rounded-sm bg-blue-600 text-white"
-              onClick={() => setIsLogin((isLogin) => !isLogin)}
+              onClick={handleLogin}
             >
               Login
             </button>
             <button
               className="flex items-end justify-center p-2 ml-4 rounded-sm bg-blue-600 text-white"
-              onClick={() => setIsLogin((isLogin) => !isLogin)}
+              onClick={handleLogin}
             >
               Guest Login
             </button>

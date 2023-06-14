@@ -7,15 +7,21 @@ import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { AuthContext } from "../contexts/AuthContext";
+import { useContext } from "react";
 
-export default function Sidebar({ isLogin, setIsLogin }) {
+export default function Sidebar() {
+  const { setIsLoggedIn } = useContext(AuthContext);
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
   return (
     <div className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-4 fixed h-full pr-8 xl:pr-8">
       <div className="flex items-center justify-center w-14 h-14 hoverEffect p-0 xl:mb-10 xl:ml-28">
         <Link to="/">
           <div className="flex pt-22">
             <img src={logo} alt="" height="44px" width="44px" />
-            <span className="hidden lg:inline text-white text-3xl font-logo1 ml-3">
+            <span className="hidden xl:inline text-white text-3xl font-logo1 ml-3">
               Codegram
             </span>
           </div>
@@ -34,13 +40,9 @@ export default function Sidebar({ isLogin, setIsLogin }) {
             Icon={AddCircleIcon}
           />
         </div>
-
         <div className="">
-          <div onClick={() => setIsLogin(false)} className="xl:mt-96 sm:mt-[800%]">
-            <SidebarLink
-              text="Logout"
-              Icon={LogoutIcon}
-            />
+          <div onClick={handleLogout} className="xl:mt-96 sm:mt-[800%]">
+            <SidebarLink text="Logout" Icon={LogoutIcon} />
           </div>
           <Link
             to="/profile"
@@ -52,8 +54,12 @@ export default function Sidebar({ isLogin, setIsLogin }) {
               className="flex h-10 w-10 rounded-full xl:mr-2.5"
             />
             <div className="hidden mr-4 xl:inline leading-5">
-              <h4 className="font-bold">{/*{session?.user?.name}*/}Shahbaz Ahmad</h4>
-              <p className="text-[#6e767d]">{/*@{session?.user?.tag}*/}@shahbazahmad</p>
+              <h4 className="font-bold">
+                {/*{session?.user?.name}*/}Shahbaz Ahmad
+              </h4>
+              <p className="text-[#6e767d]">
+                {/*@{session?.user?.tag}*/}@shahbazahmad
+              </p>
             </div>
           </Link>
         </div>
