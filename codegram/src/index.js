@@ -6,17 +6,20 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { makeServer } from "./server";
 import { AuthProvider, AuthContext } from "./contexts/AuthContext";
+import { AppProvider, AppContext } from "./contexts/AppContext";
 
 makeServer();
 
-export { AuthContext };
+export { AuthContext, AppContext };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <App />
+        <AppProvider>
+          <App />
+        </AppProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>

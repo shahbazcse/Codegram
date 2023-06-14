@@ -73,6 +73,7 @@ export default function Post ({ post }){
                   {post.likes.likeCount.length}
                 </span>
               )}
+              <span className="text-sm">{post.likes.likeCount}</span>
             </div>
 
             <div
