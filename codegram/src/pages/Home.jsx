@@ -1,8 +1,10 @@
-import Feed from "../components/Feed";
+import { useState } from "react";
+import HomeFeed from "../components/Feeds/HomeFeed";
 import NewPost from "../components/NewPost";
 import SortPostsBar from "../components/SortPostsBar";
 
 export default function Home() {
+  const [sortBy,setSortBy] = useState("");
   return (
     <div>
       <div className="sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
@@ -26,8 +28,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <SortPostsBar />
-      <Feed />
+      <SortPostsBar sortBy={sortBy} setSortBy={setSortBy} />
+      <HomeFeed sortBy={sortBy} />
     </div>
   );
 }

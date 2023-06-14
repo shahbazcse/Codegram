@@ -1,5 +1,5 @@
 
-import Feed from '../components/Feed';
+import UserFeed from '../components/Feeds/UserFeed';
 
 export default function Profile() {
   return (
@@ -59,7 +59,7 @@ export default function Profile() {
         </div>
       </div>
       <h1 className="m-4 font-medium text-lg">Your Posts</h1>
-      <Feed/>
+      <UserFeed/>
     </div>
   );
 }

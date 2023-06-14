@@ -6,19 +6,6 @@ export const AppContext = createContext();
 export function AppProvider({ children }) {
   const { isLoggedIn } = useContext(AuthContext);
 
-  const sortPosts = (state, action) => {
-    const byLatest = action.payload === "latest";
-    const modified = byLatest
-      ? state.posts.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        )
-      : state.posts.sort((a, b) => b.likes.likeCount - a.likes.likeCount);
-    return {
-      ...state,
-      posts: modified,
-    };
-  };
-
   const reducerFn = (state, action) => {
     switch (action.type) {
       case "setPosts":
@@ -26,8 +13,6 @@ export function AppProvider({ children }) {
           ...state,
           posts: action.payload,
         };
-      case "sortPosts":
-        return sortPosts(state, action);
 
       default:
         return state;
@@ -36,6 +21,8 @@ export function AppProvider({ children }) {
 
   const initialState = {
     posts: [],
+    bookmarks: [],
+    liked: [],
   };
 
   const [state, dispatch] = useReducer(reducerFn, initialState);

@@ -1,6 +1,9 @@
 import { Response } from "miragejs";
+import dayjsRandom from "dayjs-random";
 import dayjs from "dayjs";
 import jwt_decode from "jwt-decode";
+
+dayjs.extend(dayjsRandom);
 
 export const requiresAuth = function (request) {
   const encodedToken = request.requestHeaders.authorization;
@@ -19,4 +22,5 @@ export const requiresAuth = function (request) {
   );
 };
 
-export const formatDate = () => dayjs().format("YYYY-MM-DDTHH:mm:ssZ");
+export const formatDate = () =>
+  dayjs.between("2020-06-10", "2023-12-31").format("YYYY-MM-DD");
