@@ -7,16 +7,25 @@ import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import LogoutIcon from "@mui/icons-material/Logout";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import SearchIcon from "@mui/icons-material/Search";
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
 
-export default function Sidebar() {
+export default function Sidebar({ drawer, setDrawer }) {
   const { setIsLoggedIn } = useContext(AuthContext);
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
   return (
-    <div className="hidden sm:flex flex-col items-center xl:items-start xl:w-[340px] p-4 fixed h-full pr-8 xl:pr-8">
+    <div className={`${drawer ? "ml-[8px] mt-0" : "hidden"} sm:flex flex-col items-center xl:items-start xl:w-[340px] p-4 fixed h-full pr-8 xl:pr-8`}>
+      {drawer && (
+        <div
+          className="sm:hidden mb-8 font-light text-6xl px-2 cursor-pointer text-red-500"
+          onClick={() => setDrawer(false)}
+        >
+          &times;
+        </div>
+      )}
       <div className="flex items-center justify-center w-14 h-14 hoverEffect p-0 xl:mb-10 xl:ml-28">
         <Link to="/">
           <div className="flex pt-22">
@@ -38,6 +47,13 @@ export default function Sidebar() {
             className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-52 h-[52px] text-lg font-bold hover:bg-[#1a8cd8]"
             text="Create Post"
             Icon={AddCircleIcon}
+          />
+        </div>
+        <div onClick={() => console.log("Search User")} className="md:hidden">
+          <SidebarLink
+            className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-52 h-[52px] text-lg font-bold hover:bg-[#1a8cd8]"
+            text=""
+            Icon={SearchIcon}
           />
         </div>
         <div className="">

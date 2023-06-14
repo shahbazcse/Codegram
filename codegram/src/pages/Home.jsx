@@ -3,12 +3,20 @@ import HomeFeed from "../components/Feeds/HomeFeed";
 import NewPost from "../components/NewPost";
 import SortPostsBar from "../components/SortPostsBar";
 
-export default function Home() {
-  const [sortBy,setSortBy] = useState("");
+export default function Home({ drawer, setDrawer }) {
+  const [sortBy, setSortBy] = useState("");
   return (
     <div>
-      <div className="sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
-        Home
+      <div className="flex sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
+        {!drawer && (
+          <div
+            className="sm:hidden pt-2 pl-4 text-4xl cursor-pointer"
+            onClick={() => setDrawer(true)}
+          >
+            &#9776;
+          </div>
+        )}
+        <div className="flex justify-center items-center m-auto">Home</div>
       </div>
       <NewPost />
       <div className="md:hidden flex-col bg-[#25272ec2] p-2 m-4 mb-0 h-64 flex gap-3 rounded-md">
