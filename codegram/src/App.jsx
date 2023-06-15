@@ -18,7 +18,7 @@ function App() {
   const { isLoggedIn } = useContext(AuthContext);
   const [drawer, setDrawer] = useState(false);
   return (
-    <div className="">
+    <div>
       {isLoggedIn ? (
         <main className="relative max-h-screen max-w-[1400px] mx-auto">
           <Sidebar drawer={drawer} setDrawer={setDrawer} />

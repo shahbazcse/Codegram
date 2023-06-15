@@ -9,7 +9,7 @@ export default function Login() {
   const [loginForm, setLoginForm] = useState(true);
   return (
     <div
-      className="container max-w-full h-screen flex bg-black relative max-w-screen max-h-screen m-auto"
+      className="container max-w-full h-screen flex bg-black relative max-w-screen m-auto"
       style={{ backgroundImage: `url(${loginBG})` }}
     >
       <div className="hidden xl:block">
@@ -20,7 +20,7 @@ export default function Login() {
           <img src={logo} alt="" height="44px" width="44px" />
           <span className="text-white text-3xl font-logo1 ml-3">Codegram</span>
         </div>
-        <div className="flex-col m-auto items-center justify-center p-6 rounded-md bg-[#16181ce5] hover:bg-[#202329]">
+        <div className="flex-col m-auto mb-32 items-center justify-center p-6 rounded-md bg-[#16181ce5] hover:bg-[#202329]">
           {loginForm ? (
             <LoginForm loginForm={loginForm} setLoginForm={setLoginForm} />
           ) : (
