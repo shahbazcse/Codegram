@@ -2,6 +2,7 @@ import { useState } from "react";
 import HomeFeed from "../components/Feeds/HomeFeed";
 import NewPost from "../components/NewPost";
 import SortPostsBar from "../components/SortPostsBar";
+import SuggestedUserMobile from "../components/SuggestedUsers/SuggestedUserMobile";
 
 export default function Home({ drawer, setDrawer }) {
   const [sortBy, setSortBy] = useState("");
@@ -19,23 +20,7 @@ export default function Home({ drawer, setDrawer }) {
         <div className="flex justify-center items-center m-auto">Home</div>
       </div>
       <NewPost />
-      <div className="md:hidden flex-col bg-[#25272ec2] p-2 m-4 mb-0 h-64 flex gap-3 rounded-md">
-        <div className="text-[20px] font-bold text-center">Suggested Users</div>
-        <div className="flex gap-3">
-          <div className="flex border-solid rounded-[20px] bg-[#16181C] h-48 w-36 p-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-            dolorem autem eveniet enim ipsam
-          </div>
-          <div className="flex border-solid rounded-[20px] bg-[#16181C] h-48 w-36 p-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-            dolorem autem eveniet enim ipsam
-          </div>
-          <div className="flex border-solid rounded-[20px] bg-[#16181C] h-48 w-36 p-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-            dolorem autem eveniet enim ipsam
-          </div>
-        </div>
-      </div>
+      <SuggestedUserMobile />
       <SortPostsBar sortBy={sortBy} setSortBy={setSortBy} />
       <HomeFeed sortBy={sortBy} />
     </div>

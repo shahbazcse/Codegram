@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Booksmarks from "./pages/Bookmarks";
@@ -10,6 +10,9 @@ import RightSidebar from "./components/RightSidebar";
 import Sidebar from "./components/Sidebar";
 import { useContext, useState } from "react";
 import { AuthContext } from "./contexts/AuthContext";
+import Mockman from "mockman-js";
+
+const isMock = window.location.pathname === "/mockman";
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
@@ -40,8 +43,12 @@ function App() {
             <RightSidebar />
           </div>
         </main>
-      ) : (
+      ) : !isMock ? (
         <Login />
+      ) : (
+        <div className="bg-white flex p-2">
+          <Mockman className="mockman" />
+        </div>
       )}
     </div>
   );
