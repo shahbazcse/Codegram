@@ -5,7 +5,7 @@ import Explore from "./pages/Explore";
 import Booksmarks from "./pages/Bookmarks";
 import Liked from "./pages/Liked";
 import Profile from "./pages/Profile";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import RightSidebar from "./components/RightSidebar";
 import Sidebar from "./components/Sidebar";
 import { useContext, useState } from "react";
@@ -18,9 +18,9 @@ function App() {
   const { isLoggedIn } = useContext(AuthContext);
   const [drawer, setDrawer] = useState(false);
   return (
-    <div>
+    <div className="">
       {isLoggedIn ? (
-        <main className="relative max-w-[1400px] mx-auto">
+        <main className="relative max-h-screen max-w-[1400px] mx-auto">
           <Sidebar drawer={drawer} setDrawer={setDrawer} />
           <div
             className={`flex gap-6 ${

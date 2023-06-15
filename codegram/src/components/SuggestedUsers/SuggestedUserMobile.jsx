@@ -3,8 +3,6 @@ export default function SuggestedUserMobile() {
     { _id: 1, fullName: "John Doe", username: "john" },
     { _id: 2, fullName: "Tony Stark", username: "tony" },
     { _id: 3, fullName: "Steve Rogers", username: "steve" },
-    { _id: 4, fullName: "Bruce Wayne", username: "bruce" },
-    { _id: 5, fullName: "Loki", username: "loki" },
   ];
   const dummyImg =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS9Vu2kHRkEn3qBiH1szO1Qbxt4sP59Lt66Zu-O8tqpxqysYKfeyraCeAC1L0nLonfRjA&usqp=CAU";
