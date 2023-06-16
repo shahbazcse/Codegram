@@ -76,28 +76,9 @@
 
 /* Mockman */
 
-.mockman input{
-  padding: 1px;
-  margin: 4px;
-  border: 1px solid black;
-}
-
-.mockman button{
+.object-key-val{
   padding: 4px;
   margin: 4px;
-  border-radius: 10px;
-  background-color: slategray;
-  border: 1px solid black;
-}
-
-.mockman textarea{
-  padding: 1px;
-  margin: 4px;
-  border: 1px solid black;
-}
-
-.object-key-val{
-  padding: 1px;
-  margin: 4px;
-  border: 1px solid black;
+  border-radius: 4px;
+  border: 1px solid navy;
 }

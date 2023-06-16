@@ -17,11 +17,8 @@ export default function TrendingNewsSidebar() {
 
       {trending.slice(0, 4).map(({ _id, title, urlToImage, views }) => (
         <div key={_id}>
-          <div className="bg-black text-white mx-4 my-2 p-4 pb-2 rounded-md">
-            <Link
-              to={`/trending/${_id}`}
-              className="hover:text-blue-400 hover:underline"
-            >
+          <div className="hover:bg-gray-800 text-white mx-4 my-2 p-4 pb-2 rounded-[20px]">
+            <Link to={`/trending/${_id}`}>
               <div className="flex">
                 <h1 className="text-[14px]">{title}</h1>
                 <img

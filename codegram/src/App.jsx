@@ -52,9 +52,7 @@ function App() {
       ) : !isMock ? (
         <Login />
       ) : (
-        <div className="bg-white flex p-2">
-          <Mockman className="mockman" />
-        </div>
+        <Mockman />
       )}
     </div>
   );
