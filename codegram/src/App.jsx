@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Booksmarks from "./pages/Bookmarks";
@@ -11,7 +11,7 @@ import Sidebar from "./components/Sidebar";
 import { useContext, useState } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 import Mockman from "mockman-js";
-import TrendingNews from "./components/Trending/TrendingNews";
+import TrendingNews from "./pages/TrendingNews";
 
 const isMock = window.location.pathname === "/mockman";
 
