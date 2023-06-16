@@ -46,30 +46,16 @@ export default function Sidebar({ drawer, setDrawer }) {
         <SidebarLink to="/explore" text="Explore" Icon={ExploreIcon} />
         <SidebarLink to="/bookmarks" text="Bookmarks" Icon={BookmarksIcon} />
         <SidebarLink to="/liked" text="Liked Posts" Icon={FavoriteIcon} />
+        <SidebarLink text="Trending" to="/trending" Icon={MovingIcon} />
 
         <div onClick={() => console.log("New Post Created")}>
-          <SidebarLink
-            className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-52 h-[52px] text-lg font-bold hover:bg-[#1a8cd8]"
-            text="Create Post"
-            Icon={AddCircleIcon}
-          />
+          <SidebarLink text="Create Post" Icon={AddCircleIcon} />
         </div>
         <div onClick={() => console.log("Search User")} className="md:hidden">
-          <SidebarLink
-            className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-52 h-[52px] text-lg font-bold hover:bg-[#1a8cd8]"
-            text=""
-            Icon={SearchIcon}
-          />
-        </div>
-        <div className="md:hidden">
-          <SidebarLink
-            className="hidden xl:inline ml-auto bg-[#1d9bf0] text-white rounded-full w-52 h-[52px] text-lg font-bold hover:bg-[#1a8cd8]"
-            to="/trending"
-            Icon={MovingIcon}
-          />
+          <SidebarLink text="" Icon={SearchIcon} />
         </div>
         <div className="">
-          <div onClick={handleLogout} className="xl:mt-96 sm:mt-[800%]">
+          <div onClick={handleLogout} className="xl:mt-80 sm:mt-[800%]">
             <SidebarLink text="Logout" Icon={LogoutIcon} />
           </div>
           <Link
