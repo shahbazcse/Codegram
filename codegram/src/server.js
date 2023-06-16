@@ -87,6 +87,9 @@ export function makeServer({ environment = "development" } = {}) {
         "/users/unfollow/:followUserId/",
         unfollowUserHandler.bind(this)
       );
+
+      // External API
+      this.passthrough("https://saurav.tech/**");
     },
   });
 }

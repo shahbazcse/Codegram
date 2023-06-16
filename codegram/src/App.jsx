@@ -11,6 +11,7 @@ import Sidebar from "./components/Sidebar";
 import { useContext, useState } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 import Mockman from "mockman-js";
+import TrendingNews from "./components/Trending/TrendingNews";
 
 const isMock = window.location.pathname === "/mockman";
 
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/bookmarks" element={<Booksmarks />} />
                 <Route path="/liked" element={<Liked />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/trending" element={<TrendingNews />} />
               </Routes>
             </section>
             <RightSidebar />
