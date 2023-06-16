@@ -26,6 +26,11 @@ export function AppProvider({ children }) {
           ...state,
           trending: action.payload,
         };
+      case "blueTick":
+        return {
+          ...state,
+          isVerified: true,
+        };
 
       default:
         return state;
@@ -37,6 +42,7 @@ export function AppProvider({ children }) {
     bookmarks: [],
     liked: [],
     trending: [],
+    isVerified: false,
   };
 
   const [state, dispatch] = useReducer(reducerFn, initialState);
@@ -68,7 +74,7 @@ export function AppProvider({ children }) {
 
       const res = await fetch(top_headlines_api);
       const { articles } = await res.json();
-      const articlesDB = articles.slice(0,50).map((a) => ({
+      const articlesDB = articles.slice(0, 50).map((a) => ({
         ...a,
         _id: uuidv4(),
         views: rn(randomNumber),

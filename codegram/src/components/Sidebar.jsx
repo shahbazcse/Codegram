@@ -9,10 +9,16 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import MovingIcon from "@mui/icons-material/Moving";
+import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
+import { AppContext } from "../contexts/AppContext";
+import VerifiedIcon from "@mui/icons-material/Verified";
 
 export default function Sidebar({ drawer, setDrawer }) {
+  const {
+    state: { isVerified },
+  } = useContext(AppContext);
   const { setIsLoggedIn } = useContext(AuthContext);
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -21,7 +27,7 @@ export default function Sidebar({ drawer, setDrawer }) {
     <div
       className={`${
         drawer ? "ml-[8px] mt-0" : "hidden"
-      } sm:flex flex-col items-center xl:items-start xl:w-[340px] p-4 fixed h-full pr-8 xl:pr-8`}
+      } sm:flex flex-col items-center xl:items-start xl:w-[380px] p-4 fixed h-full pr-8 xl:pr-8`}
     >
       {drawer && (
         <div
@@ -47,15 +53,28 @@ export default function Sidebar({ drawer, setDrawer }) {
         <SidebarLink to="/bookmarks" text="Bookmarks" Icon={BookmarksIcon} />
         <SidebarLink to="/liked" text="Liked Posts" Icon={FavoriteIcon} />
         <SidebarLink text="Trending" to="/trending" Icon={MovingIcon} />
+        <SidebarLink
+          text="Verified"
+          to="/verified"
+          Icon={VerifiedOutlinedIcon}
+        />
 
         <div onClick={() => console.log("New Post Created")}>
-          <SidebarLink text="Create Post" Icon={AddCircleIcon} />
+          <Link className="text-[#d9d9d9] flex items-center justify-center xl:justify-start text-xl space-x-3 px-4 xl:py-2 pb-3 w-fit">
+            <span className="xl:hidden">
+              <AddCircleIcon />
+            </span>
+            <span className="hidden xl:inline px-12 py-2 text-white bg-blue-600 rounded-full">
+              Post
+            </span>
+          </Link>
         </div>
+
         <div onClick={() => console.log("Search User")} className="md:hidden">
           <SidebarLink text="" Icon={SearchIcon} />
         </div>
         <div className="">
-          <div onClick={handleLogout} className="xl:mt-80 sm:mt-[800%]">
+          <div onClick={handleLogout} className="xl:mt-64 sm:mt-[720%]">
             <SidebarLink text="Logout" Icon={LogoutIcon} />
           </div>
           <Link
@@ -68,9 +87,17 @@ export default function Sidebar({ drawer, setDrawer }) {
               className="flex h-10 w-10 rounded-full xl:mr-2.5"
             />
             <div className="hidden mr-4 xl:inline leading-5">
-              <h4 className="font-bold">
-                {/*{session?.user?.name}*/}Shahbaz Ahmad
-              </h4>
+              <div className="flex">
+                <h4 className="font-bold">
+                  {/*{session?.user?.name}*/}Shahbaz Ahmad
+                </h4>
+                {isVerified && (
+                  <VerifiedIcon
+                    className="text-blue-500 ml-1"
+                    fontSize="small"
+                  />
+                )}
+              </div>
               <p className="text-[#6e767d]">
                 {/*@{session?.user?.tag}*/}@shahbazahmad
               </p>
