@@ -1,14 +1,15 @@
 import VerifiedIcon from "@mui/icons-material/Verified";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AppContext } from "../contexts/AppContext";
 
 export default function Verified() {
-  const [verifySuccess, setVerifySuccess] = useState(false);
-  const { dispatch } = useContext(AppContext);
+  const {
+    dispatch,
+    state: { isVerified },
+  } = useContext(AppContext);
   const handleActivate = () => {
     dispatch({ type: "blueTick" });
-    setVerifySuccess(true);
   };
   return (
     <div className="sticky top-0 text-center justify-between px-4 py-2">
@@ -26,28 +27,28 @@ export default function Verified() {
           <p className="my-8">
             Enjoy using Codegram and keep contributing to the coding community!
           </p>
-          <p className="text-sm text-slate-300">
-            Accept the{" "}
+          <p className="text-sm mb-8 text-slate-300">
+            By activating the blue checkmark, you're agreeing to accept the{" "}
             <Link to="#" className="underline">
               T&C
             </Link>{" "}
-            before activating your blue checkmark
+            of Codegram
           </p>
-          <div className="text-[12px] text-start text-slate-300 mt-6 ml-4 mb-8">
-            <input type="checkbox" className="mr-2" /> I accept the terms &
-            conditions and I want to activate the blue checkmark for my account
-          </div>
           <div onClick={handleActivate}>
-            <Link className="px-12 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-full">
-              Activate
+            <Link
+              className={`px-12 py-3 text-white ${
+                isVerified ? "bg-green" : "bg-blue-600 hover:bg-blue-700"
+              } rounded-full`}
+            >
+              {isVerified ? "Activated" : "Activate"}
             </Link>
           </div>
           <div
             className={`${
-              verifySuccess ? "visible" : "invisible"
+              isVerified ? "visible" : "invisible"
             } flex items-center justify-center mt-4`}
           >
-            <div>Your Blue Checkmark is Activated Now </div>
+            <div>Your Blue Checkmark is now activated</div>
             <div className="">
               <iframe
                 src="https://giphy.com/embed/Kg9JwOFEyoK75CzQSK"
