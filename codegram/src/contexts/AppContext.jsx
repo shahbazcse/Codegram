@@ -1,5 +1,13 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { AuthContext } from "./AuthContext";
+import { v4 as uuidv4 } from "uuid";
+var rn = require("random-number");
+
+var randomNumber = {
+  min: 0,
+  max: 1000,
+  integer: true,
+};
 
 export const AppContext = createContext();
 
@@ -60,8 +68,12 @@ export function AppProvider({ children }) {
 
       const res = await fetch(top_headlines_api);
       const { articles } = await res.json();
-      console.log(articles.slice(0, 10));
-      dispatch({ type: "setTrending", payload: articles.slice(0, 10) });
+      const articlesDB = articles.slice(0,50).map((a) => ({
+        ...a,
+        _id: uuidv4(),
+        views: rn(randomNumber),
+      }));
+      dispatch({ type: "setTrending", payload: articlesDB });
     } catch (e) {
       console.log("Error: ", e);
     }

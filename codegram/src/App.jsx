@@ -12,6 +12,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 import Mockman from "mockman-js";
 import TrendingNews from "./pages/TrendingNews";
+import SingleNews from './components/Trending/SingleNews';
 
 const isMock = window.location.pathname === "/mockman";
 
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/liked" element={<Liked />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/trending" element={<TrendingNews />} />
+                <Route path="/trending/:newsId" element={<SingleNews />} />
               </Routes>
             </section>
             <RightSidebar />
