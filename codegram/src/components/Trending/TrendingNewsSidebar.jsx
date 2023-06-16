@@ -39,7 +39,7 @@ export default function TrendingNewsSidebar() {
 
       <Link
         to="/trending"
-        className="flex justify-end text-slate-400 hover:text-blue-600 underline pl-4 mr-4 text-sm"
+        className="flex justify-start text-blue-400 hover:underline pl-4 ml-4 text-[15px]"
       >
         See more
       </Link>

@@ -35,7 +35,7 @@ export default function SuggestedUsersList() {
               </div>
 
               <button
-                className="bg-blue-600 text-sm py-1 px-4 rounded-full"
+                className="bg-white text-sm hover:bg-gray-300 text-black py-1 px-4 rounded-full"
                 onClick={(e) => {
                   e.stopPropagation();
                   console.log("Followed User");
