@@ -64,7 +64,7 @@ export default function Sidebar({ drawer, setDrawer }) {
             <span className="xl:hidden">
               <AddCircleIcon />
             </span>
-            <span className="hidden xl:inline px-12 py-2 text-white bg-blue-600 rounded-full">
+            <span className="hidden xl:inline px-12 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-full">
               Post
             </span>
           </Link>

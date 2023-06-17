@@ -18,7 +18,7 @@ export default function NewPost() {
       <div className="ml-auto flex items-center gap-4">
         <button
           type="submit"
-          className="bg-blue-600 text-lg mt-2 py-1 px-4 rounded-full"
+          className="bg-blue-600 hover:bg-blue-700 text-lg mt-2 py-1 px-6 rounded-full"
           onClick={(e) => {
             e.stopPropagation();
             console.log("Created Post:", textField);

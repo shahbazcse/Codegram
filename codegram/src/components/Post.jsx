@@ -45,7 +45,7 @@ export default function Post ({ post }){
           />
 
           <div className="flex justify-between text-[20px] mt-4 w-[80%]">
-            <div className="flex gap-1 items-center">
+            <div className="flex gap-1 items-center hover:bg-slate-700 rounded-full">
               <BsChat
                 className="hoverEffect w-7 h-7 p-1"
                 onClick={(e) => {
@@ -56,7 +56,7 @@ export default function Post ({ post }){
             </div>
 
             <div
-              className="flex gap-1 items-center"
+              className="flex gap-1 items-center pr-1 hover:bg-slate-700 rounded-full"
               onClick={(e) => {
                 e.stopPropagation();
                 likePost();
@@ -77,7 +77,7 @@ export default function Post ({ post }){
             </div>
 
             <div
-              className="flex gap-1 items-center"
+              className="flex gap-1 items-center hover:bg-slate-700 rounded-md"
               onClick={(e) => {
                 e.stopPropagation();
                 likePost();
@@ -91,7 +91,7 @@ export default function Post ({ post }){
             </div>
 
             <RiDeleteBin5Line
-              className="hoverEffect w-7 h-7 p-1"
+              className="hoverEffect w-7 h-7 p-1 hover:bg-slate-700 rounded-md"
               onClick={(e) => {
                 e.stopPropagation();
                 console.log("Post Deleted");
