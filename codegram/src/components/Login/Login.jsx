@@ -20,13 +20,13 @@ export default function Login() {
           <img src={logo} alt="" height="44px" width="44px" />
           <span className="text-white text-3xl font-logo1 ml-3">Codegram</span>
         </div>
-        <div className="flex-col m-auto mb-32 items-center justify-center p-6 rounded-md bg-[#16181ce5] hover:bg-[#202329]">
           {loginForm ? (
             <LoginForm loginForm={loginForm} setLoginForm={setLoginForm} />
           ) : (
             <SignupForm loginForm={loginForm} setLoginForm={setLoginForm} />
           )}
-        </div>
+        {/* <div className="flex-col m-auto mb-32 items-center justify-center p-6 rounded-md bg-[#16181ce5] hover:bg-[#202329]">
+        </div> */}
       </div>
     </div>
   );
