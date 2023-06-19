@@ -2,11 +2,15 @@ import UserFeed from "../components/Feeds/UserFeed";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function Profile() {
   const {
     state: { isVerified },
   } = useContext(AppContext);
+  const {
+    state: { user },
+  } = useContext(AuthContext);
   return (
     <div className="">
       <div className="sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
@@ -23,7 +27,7 @@ export default function Profile() {
           </div>
           <div className="items-center justify-center flex-col">
             <h4 className="font-bold flex items-center justify-center">
-              {/*{session?.user?.name}*/}Shahbaz Ahmad
+              {user?.firstName} {user?.lastName}
               {isVerified && (
                 <VerifiedIcon
                   className="text-blue-500 ml-1"
@@ -32,7 +36,7 @@ export default function Profile() {
               )}
             </h4>
             <p className="text-[#6e767d] flex items-center justify-center">
-              {/*@{session?.user?.tag}*/}@shahbazahmad
+              @{user?.username}
             </p>
           </div>
           <div
