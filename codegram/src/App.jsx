@@ -8,7 +8,7 @@ import Profile from "./pages/Profile";
 import Login from "./components/Login/Login";
 import RightSidebar from "./components/RightSidebar";
 import Sidebar from "./components/Sidebar";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 import Mockman from "mockman-js";
 import TrendingNews from "./pages/TrendingNews";
@@ -18,11 +18,15 @@ import Verified from "./pages/Verified";
 const isMock = window.location.pathname === "/mockman";
 
 function App() {
-  const { isLoggedIn } = useContext(AuthContext);
+  const {
+    state: { token },
+  } = useContext(AuthContext);
+
   const [drawer, setDrawer] = useState(false);
+
   return (
     <div>
-      {isLoggedIn ? (
+      {token ? (
         <main className="relative max-h-screen max-w-[1400px] mx-auto">
           <Sidebar drawer={drawer} setDrawer={setDrawer} />
           <div
@@ -50,7 +54,9 @@ function App() {
           </div>
         </main>
       ) : !isMock ? (
-        <Login />
+        <>
+          <Login />
+        </>
       ) : (
         <Mockman />
       )}

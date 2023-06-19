@@ -1,35 +1,42 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { signupUser } from "../../services/AuthService";
 
 export default function SignupForm({ loginForm, setLoginForm }) {
   const [showPassword, setShowPassword] = useState(false);
+  const [checkPassword, setCheckPassword] = useState("");
 
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    password: "",
+  });
 
-  const location = useLocation();
-  const navigate = useNavigate();
   const handleSignup = () => {
-    console.log("Signup Form");
+    signupUser(formData);
     setLoginForm(true);
   };
+
   return (
     <>
-      <div class="relative bg-[#16181ce5] hover:bg-[#202329] px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg rounded-lg sm:px-10">
-        <div class="mx-auto max-w-md">
-          <h1 class="text-2xl font-semibold text-white">
+      <div className="relative bg-[#16181ce5] hover:bg-[#202329] px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg rounded-lg sm:px-10">
+        <div className="mx-auto max-w-md">
+          <h1 className="text-2xl font-semibold text-white">
             Create a new account!
           </h1>
-          <form class="mt-8" action="" method="POST">
-            <div class="relative flex m-4">
+          <form className="mt-8" action="" method="POST">
+            <div className="relative flex m-4">
               <input
                 id="email"
                 name="email"
                 type="text"
-                class="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
+                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
                 placeholder="john@doe.com"
+                onChange={(e) =>
+                  setFormData({ ...formData, username: e.target.value })
+                }
               />
               <span
                 className="invisible text-slate-500 ml-2 my-2 mt-4 cursor-pointer"
@@ -42,19 +49,22 @@ export default function SignupForm({ loginForm, setLoginForm }) {
                 )}
               </span>
               <label
-                for="email"
-                class="absolute left-0 -top-3.5 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:pl-2 peer-focus:-top-3.5 peer-focus:text-white peer-focus:text-sm"
+                htmlFor="email"
+                className="absolute left-0 -top-3.5 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:pl-2 peer-focus:-top-3.5 peer-focus:text-white peer-focus:text-sm"
               >
                 Enter Email
               </label>
             </div>
-            <div class="mt-6 relative flex m-4">
+            <div className="mt-6 relative flex m-4">
               <input
                 id="fname"
                 name="fname"
                 type="text"
-                class="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
+                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
                 placeholder="john@doe.com"
+                onChange={(e) =>
+                  setFormData({ ...formData, firstName: e.target.value })
+                }
               />
               <span className="invisible text-slate-500 ml-2 my-2 mt-4 cursor-pointer">
                 {!showPassword ? (
@@ -64,19 +74,22 @@ export default function SignupForm({ loginForm, setLoginForm }) {
                 )}
               </span>
               <label
-                for="fname"
-                class="absolute left-0 -top-3.5 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:pl-2 peer-focus:-top-3.5 peer-focus:text-white peer-focus:text-sm"
+                htmlFor="fname"
+                className="absolute left-0 -top-3.5 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:pl-2 peer-focus:-top-3.5 peer-focus:text-white peer-focus:text-sm"
               >
                 Enter First Name
               </label>
             </div>
-            <div class="mt-6 relative flex m-4">
+            <div className="mt-6 relative flex m-4">
               <input
                 id="lname"
                 name="lname"
                 type="text"
-                class="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
+                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
                 placeholder="john@doe.com"
+                onChange={(e) =>
+                  setFormData({ ...formData, lastName: e.target.value })
+                }
               />
               <span className="invisible text-slate-500 ml-2 my-2 mt-4 cursor-pointer">
                 {!showPassword ? (
@@ -86,19 +99,22 @@ export default function SignupForm({ loginForm, setLoginForm }) {
                 )}
               </span>
               <label
-                for="lname"
-                class="absolute left-0 -top-3.5 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:pl-2 peer-focus:-top-3.5 peer-focus:text-white peer-focus:text-sm"
+                htmlFor="lname"
+                className="absolute left-0 -top-3.5 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:pl-2 peer-focus:-top-3.5 peer-focus:text-white peer-focus:text-sm"
               >
                 Enter Last Name
               </label>
             </div>
-            <div class="mt-6 relative flex m-4">
+            <div className="mt-6 relative flex m-4">
               <input
                 id="password"
                 type={showPassword ? "text" : "password"}
                 name="password"
-                class="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-600"
+                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-600"
                 placeholder="Password"
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
               />
               <span
                 className="text-slate-500 ml-2 my-2 mt-4 cursor-pointer"
@@ -111,19 +127,20 @@ export default function SignupForm({ loginForm, setLoginForm }) {
                 )}
               </span>
               <label
-                for="password"
-                class="absolute left-0 -top-3.5 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:pl-2 peer-focus:-top-3.5 peer-focus:text-white peer-focus:text-sm"
+                htmlFor="password"
+                className="absolute left-0 -top-3.5 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:pl-2 peer-focus:-top-3.5 peer-focus:text-white peer-focus:text-sm"
               >
                 Enter Password
               </label>
             </div>
-            <div class="mt-6 relative flex m-4">
+            <div className="mt-6 relative flex m-4">
               <input
                 id="confirmpassword"
                 type={showPassword ? "text" : "password"}
                 name="confirmpassword"
-                class="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-600"
+                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-600"
                 placeholder="Password"
+                onChange={(e) => setCheckPassword(e.target.value)}
               />
               <span
                 className="text-slate-500 ml-2 my-2 mt-4 cursor-pointer"
@@ -136,17 +153,27 @@ export default function SignupForm({ loginForm, setLoginForm }) {
                 )}
               </span>
               <label
-                for="confirmpassword"
-                class="absolute left-0 -top-3.5 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:pl-2 peer-focus:-top-3.5 peer-focus:text-white peer-focus:text-sm"
+                htmlFor="confirmpassword"
+                className="absolute left-0 -top-3.5 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:pl-2 peer-focus:-top-3.5 peer-focus:text-white peer-focus:text-sm"
               >
                 Confirm Password
               </label>
             </div>
+            <div
+              className={`text-center ${
+                checkPassword !== formData.password ? "visible" : "invisible"
+              } text-red-200 text-[13px]`}
+            >
+              Password Unmatched
+            </div>
           </form>
-          <div className="flex mt-8 justify-center gap-10">
+          <div className="flex mt-4 justify-center gap-10">
             <button
               className="flex p-2  rounded bg-blue-600 hover:bg-blue-700 text-white"
               onClick={handleSignup}
+              disabled={
+                checkPassword !== formData.password || !formData.password.length
+              }
             >
               Sign up
             </button>

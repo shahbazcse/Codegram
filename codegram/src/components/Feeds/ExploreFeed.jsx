@@ -7,9 +7,7 @@ export default function ExploreFeed() {
     state: { posts },
   } = useContext(AppContext);
 
-  const exploreFeedPosts = [...posts];
-
-  const sortedPost = exploreFeedPosts.sort(
+  const sortedPost = posts.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 

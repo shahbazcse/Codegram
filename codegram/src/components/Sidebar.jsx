@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/messages.png";
 import SidebarLink from "./SidebarLink";
 import HomeIcon from "@mui/icons-material/Home";
@@ -10,19 +10,26 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import MovingIcon from "@mui/icons-material/Moving";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
-import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function Sidebar({ drawer, setDrawer }) {
   const {
     state: { isVerified },
   } = useContext(AppContext);
-  const { setIsLoggedIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const {
+    dispatch,
+  } = useContext(AuthContext);
+
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    dispatch({ type: "setToken", payload: null });
   };
+
   return (
     <div
       className={`${
@@ -74,7 +81,7 @@ export default function Sidebar({ drawer, setDrawer }) {
           <SidebarLink text="" Icon={SearchIcon} />
         </div>
         <div className="">
-          <div onClick={handleLogout} className="xl:mt-64 sm:mt-[720%]">
+          <div onClick={() => handleLogout()} className="xl:mt-64 sm:mt-[720%]">
             <SidebarLink text="Logout" Icon={LogoutIcon} />
           </div>
           <Link

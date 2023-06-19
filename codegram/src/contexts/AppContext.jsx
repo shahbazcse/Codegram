@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { AuthContext } from "./AuthContext";
 import { v4 as uuidv4 } from "uuid";
+import { getAllPosts } from "../services/PostServices";
 var rn = require("random-number");
 
 var randomNumber = {
@@ -12,7 +13,7 @@ var randomNumber = {
 export const AppContext = createContext();
 
 export function AppProvider({ children }) {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { state: {token} } = useContext(AuthContext);
 
   const reducerFn = (state, action) => {
     switch (action.type) {
@@ -51,8 +52,7 @@ export function AppProvider({ children }) {
 
   const getData = async () => {
     try {
-      const response = await fetch("/api/posts");
-      const { posts } = await response.json();
+      const posts = await getAllPosts();
       dispatch({ type: "setPosts", payload: posts });
     } catch (e) {
       console.log("Error: ", e);
@@ -60,7 +60,7 @@ export function AppProvider({ children }) {
   };
 
   useEffect(() => {
-    if (isLoggedIn && !state.posts.length) {
+    if (!token && !state.posts.length) {
       getData();
     }
   });
@@ -86,7 +86,7 @@ export function AppProvider({ children }) {
   };
 
   useEffect(() => {
-    if (isLoggedIn && !state.trending.length) {
+    if (token && !state.trending.length) {
       const timer = setTimeout(() => {
         getExternalAPIData();
       }, 500);
