@@ -7,24 +7,32 @@ import { BsFillBookmarkFill } from "react-icons/bs";
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
 import { AppContext } from "../contexts/AppContext";
-import { getBookmarks } from "../services/PostServices";
+import {
+  doLikePost,
+  doRemoveLike,
+  getBookmarks,
+} from "../services/PostServices";
 
 export default function Post({ post }) {
-  const [likes, setLikes] = useState([]);
-  const [liked, setLiked] = useState(false);
-  const [comments, setComments] = useState([]);
-
   const {
     state: { token },
   } = useContext(AuthContext);
 
   const {
-    state: { bookmarks },
+    state: { bookmarks, liked },
     dispatch,
   } = useContext(AppContext);
 
   const likePost = async () => {
-    console.log("Liked Post");
+    const posts = await doLikePost(token, post._id);
+    dispatch({ type: "setPosts", payload: posts });
+    dispatch({ type: "setLikes" });
+  };
+
+  const removeLike = async () => {
+    const posts = await doRemoveLike(token, post._id);
+    dispatch({ type: "setPosts", payload: posts });
+    dispatch({ type: "setLikes" });
   };
 
   const setBookmarks = async () => {
@@ -65,6 +73,7 @@ export default function Post({ post }) {
   };
 
   const bookmarked = bookmarks.find(({ _id }) => _id === post._id);
+  const isLiked = liked.find(({ _id }) => _id === post._id);
 
   const dummyImg =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS9Vu2kHRkEn3qBiH1szO1Qbxt4sP59Lt66Zu-O8tqpxqysYKfeyraCeAC1L0nLonfRjA&usqp=CAU";
@@ -110,10 +119,10 @@ export default function Post({ post }) {
               className="flex gap-1 items-center pr-1 hover:bg-slate-700 rounded-full"
               onClick={(e) => {
                 e.stopPropagation();
-                likePost();
+                !isLiked ? likePost() : removeLike();
               }}
             >
-              {liked ? (
+              {isLiked ? (
                 <AiFillHeart className="hoverEffect w-7 h-7 p-1 text-pink-700" />
               ) : (
                 <AiOutlineHeart className="hoverEffect w-7 h-7 p-1" />

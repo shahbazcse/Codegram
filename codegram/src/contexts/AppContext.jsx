@@ -14,7 +14,7 @@ export const AppContext = createContext();
 
 export function AppProvider({ children }) {
   const {
-    state: { token },
+    state: { token, user },
   } = useContext(AuthContext);
 
   const setBooksmarks = (state, action) => {
@@ -28,6 +28,16 @@ export function AppProvider({ children }) {
     };
   };
 
+  const setLikes = (state) => {
+    const myLikes = state.posts.filter(({ likes: { likedBy } }) =>
+      likedBy.find(({ _id }) => _id === user._id)
+    );
+    return {
+      ...state,
+      liked: myLikes,
+    };
+  };
+
   const reducerFn = (state, action) => {
     switch (action.type) {
       case "setPosts":
@@ -37,6 +47,8 @@ export function AppProvider({ children }) {
         };
       case "setBookmarks":
         return setBooksmarks(state, action);
+      case "setLikes":
+        return setLikes(state);
       case "setTrending":
         return {
           ...state,

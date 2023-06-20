@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import Post from '../components/Post';
 
-export default function Booksmarks() {
+export default function Liked() {
   const {
     state: { liked },
   } = useContext(AppContext);
