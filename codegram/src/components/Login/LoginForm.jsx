@@ -16,7 +16,6 @@ export default function LoginForm({ loginForm, setLoginForm }) {
 
   const handleLogin = async () => {
     const response = await loginUser(formData);
-    console.log(response);
 
     if (response.user && response.token) {
       dispatch({ type: "setToken", payload: response.token });

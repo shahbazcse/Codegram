@@ -13,7 +13,20 @@ var randomNumber = {
 export const AppContext = createContext();
 
 export function AppProvider({ children }) {
-  const { state: {token} } = useContext(AuthContext);
+  const {
+    state: { token },
+  } = useContext(AuthContext);
+
+  const setBooksmarks = (state, action) => {
+    const myBookmarks = state.posts.filter(({ _id }) =>
+      action.payload.includes(_id)
+    );
+
+    return {
+      ...state,
+      bookmarks: myBookmarks,
+    };
+  };
 
   const reducerFn = (state, action) => {
     switch (action.type) {
@@ -22,6 +35,8 @@ export function AppProvider({ children }) {
           ...state,
           posts: action.payload,
         };
+      case "setBookmarks":
+        return setBooksmarks(state, action);
       case "setTrending":
         return {
           ...state,
@@ -60,7 +75,7 @@ export function AppProvider({ children }) {
   };
 
   useEffect(() => {
-    if (!token && !state.posts.length) {
+    if (!token) {
       getData();
     }
   });

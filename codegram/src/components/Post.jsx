@@ -1,32 +1,83 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useState, useContext } from "react";
 import { BsChat } from "react-icons/bs";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaRegBookmark } from "react-icons/fa";
-import {BsFillBookmarkFill} from "react-icons/bs"
+import { BsFillBookmarkFill } from "react-icons/bs";
+import { AuthContext } from "../contexts/AuthContext";
+import axios from "axios";
+import { AppContext } from "../contexts/AppContext";
+import { getBookmarks } from "../services/PostServices";
 
-export default function Post ({ post }){
+export default function Post({ post }) {
   const [likes, setLikes] = useState([]);
   const [liked, setLiked] = useState(false);
   const [comments, setComments] = useState([]);
 
+  const {
+    state: { token },
+  } = useContext(AuthContext);
+
+  const {
+    state: { bookmarks },
+    dispatch,
+  } = useContext(AppContext);
+
   const likePost = async () => {
     console.log("Liked Post");
+  };
+
+  const setBookmarks = async () => {
+    const response = await getBookmarks({
+      headers: { authorization: token },
+    });
+    dispatch({ type: "setBookmarks", payload: response.data.bookmarks });
+  };
+
+  const saveBookmark = async () => {
+    axios.post(
+      `/api/users/bookmark/${post._id}`,
+      {},
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+    setBookmarks();
+  };
+
+  const removeBookmark = () => {
+    axios.post(
+      `/api/users/remove-bookmark/${post._id}`,
+      {},
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+    setBookmarks();
   };
 
   const openModal = () => {
     console.log("opening model ");
   };
 
-  const bookmarked = false;
+  const bookmarked = bookmarks.find(({ _id }) => _id === post._id);
 
-  const dummyImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS9Vu2kHRkEn3qBiH1szO1Qbxt4sP59Lt66Zu-O8tqpxqysYKfeyraCeAC1L0nLonfRjA&usqp=CAU";
+  const dummyImg =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS9Vu2kHRkEn3qBiH1szO1Qbxt4sP59Lt66Zu-O8tqpxqysYKfeyraCeAC1L0nLonfRjA&usqp=CAU";
 
   return (
     <div className="mt-4 border-t border-gray-500 px-4 pt-6 pb-4 cursor-pointer">
       <div className="grid grid-cols-[48px,1fr] gap-4">
         <div>
-          <img className="h-12 w-12 rounded-full object-cover" src={dummyImg} alt="" />
+          <img
+            className="h-12 w-12 rounded-full object-cover"
+            src={dummyImg}
+            alt=""
+          />
         </div>
 
         <div>
@@ -80,7 +131,7 @@ export default function Post ({ post }){
               className="flex gap-1 items-center hover:bg-slate-700 rounded-md"
               onClick={(e) => {
                 e.stopPropagation();
-                likePost();
+                !bookmarked ? saveBookmark() : removeBookmark();
               }}
             >
               {bookmarked ? (
@@ -97,10 +148,9 @@ export default function Post ({ post }){
                 console.log("Post Deleted");
               }}
             />
-
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
