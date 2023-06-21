@@ -35,9 +35,11 @@ export default function Profile() {
     getUserDetails();
   });
 
-  const userAbout = !user?.about
-    ? "Write something about yourself"
-    : user.about;
+  const userAbout = !user?.about ? (
+    <span className="text-slate-600">Write something about yourself</span>
+  ) : (
+    user.about
+  );
   const userDP = !user?.avatar ? male : user.avatar;
 
   return (
@@ -80,7 +82,9 @@ export default function Profile() {
             />
           )}
           <h1 className="m-2 font-bold">About</h1>
-          <div className="bg-[#16181C] p-2 rounded-md">{userAbout}</div>
+          <div className="bg-[#16181C] w-[30rem] p-2 rounded-md">
+            {userAbout}
+          </div>
           <h1 className="m-2 font-bold">Link</h1>
           <div className="bg-[#16181C] p-2 rounded-md m-auto flex items-center justify-center">
             {user?.portfolioURL ? (
@@ -88,7 +92,7 @@ export default function Profile() {
                 {user?.portfolioURL}
               </a>
             ) : (
-              <span>Add your portfolio link</span>
+              <span className="text-slate-600">Add your portfolio link</span>
             )}
           </div>
           <div className="flex p-2 mt-2 rounded-md text-center justify-evenly">
