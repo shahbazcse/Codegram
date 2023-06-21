@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import loginBanner from "../../assets/Codegram.gif";
-import loginBG from "../../assets/loginBG2.jpg";
-import logo from "../../assets/messages.png";
+import { useState } from "react";
+import loginBanner from "../../assets/logos/Codegram.gif";
+import loginBG from "../../assets/logos/loginBG2.jpg";
+import logo from "../../assets//logos/messages.png";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 

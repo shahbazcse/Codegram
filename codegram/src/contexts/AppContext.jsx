@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import { AuthContext } from "./AuthContext";
 import { v4 as uuidv4 } from "uuid";
 import { getAllPosts } from "../services/PostServices";
+
 var rn = require("random-number");
 
 var randomNumber = {
@@ -44,6 +45,11 @@ export function AppProvider({ children }) {
         return {
           ...state,
           posts: action.payload,
+        };
+      case "setUserAvatar":
+        return {
+          ...state,
+          userAvatar: action.payload,
         };
       case "setBookmarks":
         return setBooksmarks(state, action);

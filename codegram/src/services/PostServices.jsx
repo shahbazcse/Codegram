@@ -11,7 +11,7 @@ export const getBookmarks = async (header) => {
   return response;
 };
 
-export const doLikePost = async (token,postId) => {
+export const doLikePost = async (token, postId) => {
   const response = await axios.post(
     `/api/posts/like/${postId}`,
     {},
@@ -24,7 +24,7 @@ export const doLikePost = async (token,postId) => {
   return response.data.posts;
 };
 
-export const doRemoveLike = async (token,postId) => {
+export const doRemoveLike = async (token, postId) => {
   const response = await axios.post(
     `/api/posts/dislike/${postId}`,
     {},
@@ -35,4 +35,13 @@ export const doRemoveLike = async (token,postId) => {
     }
   );
   return response.data.posts;
-}
+};
+
+export const editUserProfile = async (token, data) => {
+  const response = await axios.post(
+    "/api/users/edit",
+    { userData: data },
+    { headers: { authorization: token } }
+  );
+  return response.data;
+};

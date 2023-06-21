@@ -1,5 +1,7 @@
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils";
+import batman from "../../assets/avatars/batman.png";
+
 /**
  * User Database can be added here.
  * You can add default users of your wish with different attributes
@@ -12,6 +14,9 @@ export const users = [
     lastName: "Ahmad",
     username: "shahbazcse",
     password: "shahbaz123",
+    avatar: batman,
+    about: "",
+    portfolioURL: "www.google.com",
     bookmarks: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),

@@ -1,16 +1,45 @@
 import UserFeed from "../components/Feeds/UserFeed";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../contexts/AppContext";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { AuthContext } from "../contexts/AuthContext";
+import EditProfileModal from "../components/Modals/UserProfileModals/EditProfileModal";
+import male from "../assets/avatars/male.png";
+import axios from "axios";
 
 export default function Profile() {
   const {
     state: { isVerified },
   } = useContext(AppContext);
+
   const {
-    state: { user },
+    state: {
+      user: { _id },
+    },
   } = useContext(AuthContext);
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const [user, setUser] = useState(null);
+
+  const handleEditProfile = () => {
+    setOpenModal(!openModal);
+  };
+
+  const getUserDetails = async () => {
+    const response = await axios.get(`/api/users/${_id}`);
+    setUser(response.data.user);
+  };
+
+  useEffect(() => {
+    getUserDetails();
+  });
+
+  const userAbout = !user?.about
+    ? "Write something about yourself"
+    : user.about;
+  const userDP = !user?.avatar ? male : user.avatar;
+
   return (
     <div className="">
       <div className="sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
@@ -19,11 +48,7 @@ export default function Profile() {
       <div className=" flex items-center justify-center m-4 mt-2 p-4 border-solid border-[1px] rounded-[8px] border-gray-400 text-white">
         <div className="text-[#d9d9d9] flex-col">
           <div className="flex mb-2 items-center justify-center">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS9Vu2kHRkEn3qBiH1szO1Qbxt4sP59Lt66Zu-O8tqpxqysYKfeyraCeAC1L0nLonfRjA&usqp=CAU"
-              alt=""
-              className="h-20 w-20 rounded-full"
-            />
+            <img src={userDP} alt="" className="h-20 w-20 rounded-full" />
           </div>
           <div className="items-center justify-center flex-col">
             <h4 className="font-bold flex items-center justify-center">
@@ -40,19 +65,31 @@ export default function Profile() {
             </p>
           </div>
           <div
-            onClick={() => console.log("Edit Profile")}
+            onClick={() => handleEditProfile()}
             className="bg-blue-700 m-auto w-24 rounded-md p-1.5  mt-3 flex items-center justify-center cursor-pointer"
           >
             Edit Profile
           </div>
+          {openModal && (
+            <EditProfileModal
+              setOpenModal={setOpenModal}
+              userDP={userDP}
+              about={user?.about}
+              link={user?.portfolioURL}
+              getUserDetails={getUserDetails}
+            />
+          )}
           <h1 className="m-2 font-bold">About</h1>
-          <div className="bg-[#16181C] flex p-2 rounded-md">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi,
-            laborum.
-          </div>
+          <div className="bg-[#16181C] p-2 rounded-md">{userAbout}</div>
           <h1 className="m-2 font-bold">Link</h1>
-          <div className="bg-[#16181C] text-red-600 hover:underline p-2 rounded-md m-auto flex items-center justify-center">
-            <a href="#">portfolio.link</a>
+          <div className="bg-[#16181C] p-2 rounded-md m-auto flex items-center justify-center">
+            {user?.portfolioURL ? (
+              <a href="#" className="text-red-600 hover:underline">
+                {user?.portfolioURL}
+              </a>
+            ) : (
+              <span>Add your portfolio link</span>
+            )}
           </div>
           <div className="flex p-2 mt-2 rounded-md text-center justify-evenly">
             <div className="items-center justify-center flex-col">
