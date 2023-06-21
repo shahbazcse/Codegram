@@ -1,18 +1,4 @@
 import styles from "../../Modals/Modal.module.css";
-// import male from "../../../assets/avatars/batman.png";
-// import batman from "../../../assets/avatars/batman.png";
-// import boy1 from "../../../assets/avatars/boy1.png";
-// import boy2 from "../../../assets/avatars/boy2.png";
-// import girl1 from "../../../assets/avatars/girl1.png";
-// import man1 from "../../../assets/avatars/man1.png";
-// import man2 from "../../../assets/avatars/man2.png";
-// import man3 from "../../../assets/avatars/man3.png";
-// import man4 from "../../../assets/avatars/man4.png";
-// import woman1 from "../../../assets/avatars/woman1.png";
-// import woman2 from "../../../assets/avatars/woman2.png";
-// import woman3 from "../../../assets/avatars/woman3.png";
-// import woman4 from "../../../assets/avatars/woman4.png";
-// import woman5 from "../../../assets/avatars/woman5.png";
 import { BsCheckLg } from "react-icons/bs";
 import { avatars } from "../../../backend/db/avatars";
 
@@ -21,9 +7,8 @@ export default function AvatarModal({
   setChangeAvatar,
   userDP,
 }) {
-  const handleSelect = (e) => {
-    setChangeAvatar(e.target.value);
-    console.log(e.target.value);
+  const handleSelect = (avatar) => {
+    setChangeAvatar(avatar);
     setAvatarModal(false);
   };
 
@@ -47,8 +32,7 @@ export default function AvatarModal({
                 avatar !== userDP && (
                   <div
                     key={avatar}
-                    value={avatar}
-                    onClick={(e) => handleSelect(e)}
+                    onClick={() => handleSelect(avatar)}
                     className="flex mb-2 w-20 rounded-full mx-[12px] mt-2 justify-center items-center cursor-pointer container"
                   >
                     <img
