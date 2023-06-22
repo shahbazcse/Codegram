@@ -14,26 +14,15 @@ export default function Profile() {
 
   const {
     state: {
-      user: { _id },
+      user,
     },
   } = useContext(AuthContext);
 
   const [openModal, setOpenModal] = useState(false);
 
-  const [user, setUser] = useState(null);
-
   const handleEditProfile = () => {
     setOpenModal(!openModal);
   };
-
-  const getUserDetails = async () => {
-    const response = await axios.get(`/api/users/${_id}`);
-    setUser(response.data.user);
-  };
-
-  useEffect(() => {
-    getUserDetails();
-  });
 
   const userAbout = !user?.about ? (
     <span className="text-slate-600">Write something about yourself</span>
@@ -78,7 +67,6 @@ export default function Profile() {
               userDP={userDP}
               about={user?.about}
               link={user?.portfolioURL}
-              getUserDetails={getUserDetails}
             />
           )}
           <h1 className="m-2 font-bold">About</h1>

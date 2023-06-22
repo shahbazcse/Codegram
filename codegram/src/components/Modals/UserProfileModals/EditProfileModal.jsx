@@ -20,6 +20,7 @@ export default function EditProfileModal({
 
   const {
     state: { token, user },
+    dispatch,
   } = useContext(AuthContext);
 
   const handleSave = async () => {
@@ -30,6 +31,7 @@ export default function EditProfileModal({
       portfolioURL: changeLink,
     };
     editUserProfile(token, data);
+    dispatch({ type: "setUser", payload: data });
     setOpenModal(false);
   };
   return (
