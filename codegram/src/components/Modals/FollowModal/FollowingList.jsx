@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { doUnfollowUser, editUserProfile } from "../../../services/UserService";
@@ -33,8 +33,10 @@ export default function FollowingList() {
       username !== user.username &&
       user?.following?.find((p) => p.username === username)
   );
+
   return (
     <div className="flex-col">
+      {!filteredUsers.length && <div className="text-center">No following</div>}
       {filteredUsers.map((user) => (
         <div
           key={user._id}

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { BsChat } from "react-icons/bs";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -19,7 +19,7 @@ export default function Post({ post }) {
   } = useContext(AuthContext);
 
   const {
-    state: { bookmarks, liked },
+    state: { bookmarks, liked, allUsers },
     dispatch,
   } = useContext(AppContext);
 
@@ -75,6 +75,8 @@ export default function Post({ post }) {
   const bookmarked = bookmarks.find(({ _id }) => _id === post._id);
   const isLiked = liked.find(({ _id }) => _id === post._id);
 
+  const user = allUsers.find(({ username }) => username === post.username);
+
   const dummyImg =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS9Vu2kHRkEn3qBiH1szO1Qbxt4sP59Lt66Zu-O8tqpxqysYKfeyraCeAC1L0nLonfRjA&usqp=CAU";
 
@@ -84,18 +86,21 @@ export default function Post({ post }) {
         <div>
           <img
             className="h-12 w-12 rounded-full object-cover"
-            src={dummyImg}
+            src={user?.avatar}
             alt=""
           />
         </div>
 
         <div>
-          <div className="block sm:flex gap-1">
-            <h1 className="font-medium">{post?.username}</h1>
-
-            <div className="flex">
-              <p className="text-gray-500">{post?.createdAt}</p>
-            </div>
+          <div className="block sm:flex gap-2">
+            <h1 className="font-medium">
+              {user?.firstName} {user?.lastName}
+            </h1>
+            <h1 className="text-gray-500">@{post?.username}</h1>
+            <span className="hidden sm:block text-gray-500 text-[12px] mt-[4px]">
+              •
+            </span>
+            <p className="text-gray-500">{post?.createdAt}</p>
           </div>
           <p>{post?.content}</p>
           <img

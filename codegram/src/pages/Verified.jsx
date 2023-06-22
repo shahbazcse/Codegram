@@ -1,16 +1,24 @@
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AppContext } from "../contexts/AppContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function Verified() {
   const {
+    state: { user },
     dispatch,
-    state: { isVerified },
-  } = useContext(AppContext);
+  } = useContext(AuthContext);
+
   const handleActivate = () => {
-    dispatch({ type: "blueTick" });
+    const updatedUser = {
+      ...user,
+      isVerified: true,
+    };
+    dispatch({ type: "setUser", payload: updatedUser });
   };
+
+  console.log(user);
+
   return (
     <div className="sticky top-0 text-center justify-between px-4 py-2">
       <h1 className="font-medium text-[20px]">Verify your account</h1>
@@ -37,15 +45,15 @@ export default function Verified() {
           <div onClick={handleActivate}>
             <Link
               className={`px-12 py-3 text-white ${
-                isVerified ? "bg-green" : "bg-blue-600 hover:bg-blue-700"
+                user.isVerified ? "bg-green" : "bg-blue-600 hover:bg-blue-700"
               } rounded-full`}
             >
-              {isVerified ? "Activated" : "Activate"}
+              {user.isVerified ? "Activated" : "Activate"}
             </Link>
           </div>
           <div
             className={`${
-              isVerified ? "visible" : "invisible"
+              user.isVerified ? "visible" : "invisible"
             } flex items-center justify-center mt-4`}
           >
             <div>Your Blue Checkmark is now activated</div>

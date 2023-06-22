@@ -11,18 +11,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import MovingIcon from "@mui/icons-material/Moving";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
 import { useContext } from "react";
-import { AppContext } from "../contexts/AppContext";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { AuthContext } from "../contexts/AuthContext";
 
 export default function Sidebar({ drawer, setDrawer }) {
-  const {
-    state: { isVerified },
-  } = useContext(AppContext);
-
   const navigate = useNavigate();
 
   const {
+    state: { user },
     dispatch,
   } = useContext(AuthContext);
 
@@ -89,25 +85,23 @@ export default function Sidebar({ drawer, setDrawer }) {
             className="text-[#d9d9d9] mt-4 flex items-center justify-center xl:justify-start hover:bg-slate-800 hover:rounded-full px-1 py-1 w-fit"
           >
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS9Vu2kHRkEn3qBiH1szO1Qbxt4sP59Lt66Zu-O8tqpxqysYKfeyraCeAC1L0nLonfRjA&usqp=CAU"
+              src={user.avatar}
               alt=""
               className="flex h-10 w-10 rounded-full xl:mr-2.5"
             />
             <div className="hidden mr-4 xl:inline leading-5">
               <div className="flex">
                 <h4 className="font-bold">
-                  {/*{session?.user?.name}*/}Shahbaz Ahmad
+                  {user?.firstName} {user?.lastName}
                 </h4>
-                {isVerified && (
+                {user.isVerified && (
                   <VerifiedIcon
                     className="text-blue-500 ml-1"
                     fontSize="small"
                   />
                 )}
               </div>
-              <p className="text-[#6e767d]">
-                {/*@{session?.user?.tag}*/}@shahbazahmad
-              </p>
+              <p className="text-[#6e767d]">@{user?.username}</p>
             </div>
           </Link>
         </div>

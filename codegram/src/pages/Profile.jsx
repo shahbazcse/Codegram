@@ -47,7 +47,7 @@ export default function Profile() {
           <div className="items-center justify-center flex-col">
             <h4 className="font-bold flex items-center justify-center">
               {user?.firstName} {user?.lastName}
-              {isVerified && (
+              {user.isVerified && (
                 <VerifiedIcon
                   className="text-blue-500 ml-1"
                   fontSize="medium"
@@ -79,7 +79,7 @@ export default function Profile() {
           <h1 className="m-2 font-bold">Link</h1>
           <div className="bg-[#16181C] p-2 rounded-md m-auto flex items-center justify-center">
             {user?.portfolioURL ? (
-              <a href="#" className="text-red-600 hover:underline">
+              <a href="#" className="text-blue-600 hover:underline">
                 {user?.portfolioURL}
               </a>
             ) : (

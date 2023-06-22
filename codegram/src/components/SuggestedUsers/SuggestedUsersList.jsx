@@ -6,6 +6,7 @@ import {
 } from "../../services/UserService";
 import { AuthContext } from "../../contexts/AuthContext";
 import { AppContext } from "../../contexts/AppContext";
+import VerifiedIcon from "@mui/icons-material/Verified";
 
 export default function SuggestedUsersList() {
   // const filteredUsers = [
@@ -48,7 +49,7 @@ export default function SuggestedUsersList() {
           {filteredUsers.slice(0, 5).map((user) => (
             <div
               key={user._id}
-              className="flex items-start gap-2 cursor-pointer p-3"
+              className="flex items-start gap-2 cursor-pointer py-3 px-2"
               onClick={() => {
                 console.log("Open User Profile");
               }}
@@ -56,13 +57,17 @@ export default function SuggestedUsersList() {
               <img
                 src={user.avatar}
                 alt=""
-                className="h-8 w-8 rounded-full object-cover"
-                height="120px"
-                width="120px"
+                className="h-14 w-14 rounded-full object-cover"
               />
-              <div className="flex flex-col grow -mt-0.5">
+              <div className="flex flex-col grow mt-2">
                 <span className="text-sm">
                   {user.firstName} {user.lastName}
+                  {user.isVerified && (
+                    <VerifiedIcon
+                      className="text-blue-500 ml-1"
+                      fontSize="small"
+                    />
+                  )}
                 </span>
                 <span className="text-sm text-lightGrey -mt-1">
                   @{user.username}
@@ -70,7 +75,7 @@ export default function SuggestedUsersList() {
               </div>
 
               <button
-                className="bg-white text-sm hover:bg-gray-300 text-black py-1 px-4 rounded-full"
+                className="bg-white text-sm hover:bg-gray-300 text-black py-1 px-4 mt-3 rounded-full"
                 onClick={(e) => {
                   e.stopPropagation();
                   handleFollowUser(user._id);

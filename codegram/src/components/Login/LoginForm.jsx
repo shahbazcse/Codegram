@@ -26,6 +26,15 @@ export default function LoginForm({ loginForm, setLoginForm }) {
 
     navigate(location?.state?.from?.pathname);
   };
+
+  const handleGuestLogin = () => {
+    setFormData({
+      ...formData,
+      username: "shahbazcse",
+      password: "shahbaz123",
+    });
+  };
+
   return (
     <>
       {/* <h1 className="text-white font-bold text-2xl pt-0 p-4 items-center justify-center flex">
@@ -106,11 +115,7 @@ export default function LoginForm({ loginForm, setLoginForm }) {
             </button>
             <button
               className="flex p-2 rounded bg-blue-600 hover:bg-blue-700 text-white"
-              onClick={() => setFormData({
-                ...formData,
-                username: "shahbazcse",
-                password: "shahbaz123",
-              })}
+              onClick={handleGuestLogin}
             >
               Guest Login?
             </button>
