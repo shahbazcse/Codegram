@@ -1,12 +1,12 @@
 .darkBG {
   background-color: #16181cbe;
   width: 100vw;
-  height: 200vh;
+  height: 100vh;
   z-index: 0;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
+  position: fixed;
 }
 
 .centered {
@@ -19,6 +19,7 @@
 .modal {
   max-height: screen;
   background: black;
+  overflow: auto;
   color: white;
   z-index: 10;
   border-radius: 16px;

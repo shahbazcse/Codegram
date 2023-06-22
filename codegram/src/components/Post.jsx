@@ -11,7 +11,7 @@ import {
   doLikePost,
   doRemoveLike,
   getBookmarks,
-} from "../services/PostServices";
+} from "../services/UserService";
 
 export default function Post({ post }) {
   const {

@@ -1,24 +1,27 @@
 import UserFeed from "../components/Feeds/UserFeed";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../contexts/AppContext";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { AuthContext } from "../contexts/AuthContext";
 import EditProfileModal from "../components/Modals/UserProfileModals/EditProfileModal";
 import male from "../assets/avatars/male.png";
-import axios from "axios";
+import FollowModal from "../components/Modals/FollowModal/FollowModal";
 
 export default function Profile() {
   const {
-    state: { isVerified },
-  } = useContext(AppContext);
-
-  const {
-    state: {
-      user,
-    },
+    state: { user },
   } = useContext(AuthContext);
 
+  const {
+    state: { posts, isVerified },
+  } = useContext(AppContext);
+
+  const userFeedPosts = [
+    ...posts.filter(({ username }) => username === user.username),
+  ];
+
   const [openModal, setOpenModal] = useState(false);
+  const [followModal, setFollowModal] = useState({ open: false, type: "" });
 
   const handleEditProfile = () => {
     setOpenModal(!openModal);
@@ -57,7 +60,7 @@ export default function Profile() {
           </div>
           <div
             onClick={() => handleEditProfile()}
-            className="bg-blue-700 m-auto w-24 rounded-md p-1.5  mt-3 flex items-center justify-center cursor-pointer"
+            className="bg-blue-600 hover:bg-blue-700 m-auto w-24 rounded-md p-1.5  mt-3 flex items-center justify-center cursor-pointer"
           >
             Edit Profile
           </div>
@@ -85,30 +88,50 @@ export default function Profile() {
           </div>
           <div className="flex p-2 mt-2 rounded-md text-center justify-evenly">
             <div className="items-center justify-center flex-col">
-              <h4 className="font-bold flex items-center justify-center">0</h4>
-              <p className="text-white flex items-center justify-center">
+              <h4 className="font-bold flex items-center justify-center">
+                {user?.following?.length | "0"}
+              </h4>
+              <div
+                onClick={() =>
+                  setFollowModal({ open: true, type: "Following" })
+                }
+                className="text-white flex items-center justify-center hover:underline cursor-pointer"
+              >
                 Following
-              </p>
+              </div>
+              {followModal.open && (
+                <FollowModal
+                  setFollowModal={setFollowModal}
+                  type={followModal.type}
+                />
+              )}
             </div>
             <div className="items-center justify-center flex-col">
-              <h4 className="font-bold flex items-center justify-center">2K</h4>
+              <h4 className="font-bold flex items-center justify-center">
+                {userFeedPosts.length}
+              </h4>
               <p className="text-white flex items-center justify-center">
                 Posts
               </p>
             </div>
             <div className="items-center justify-center flex-col">
               <h4 className="font-bold flex items-center justify-center">
-                37.3K
+                {user?.followers?.length | "0"}
               </h4>
-              <p className="text-white flex items-center justify-center">
+              <div
+                onClick={() =>
+                  setFollowModal({ open: true, type: "Followers" })
+                }
+                className="text-white flex items-center justify-center hover:underline cursor-pointer"
+              >
                 Followers
-              </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <h1 className="m-4 font-medium text-lg">Your Posts</h1>
-      <UserFeed />
+      <UserFeed userFeedPosts={userFeedPosts} />
     </div>
   );
 }

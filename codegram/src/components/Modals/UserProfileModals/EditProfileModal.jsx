@@ -3,7 +3,7 @@ import styles from "../../Modals/Modal.module.css";
 import { RiCloseLine } from "react-icons/ri";
 import { TbCameraPlus } from "react-icons/tb";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { editUserProfile } from "../../../services/PostServices";
+import { editUserProfile } from "../../../services/UserService";
 import AvatarModal from "./AvatarModal";
 
 export default function EditProfileModal({
@@ -36,7 +36,7 @@ export default function EditProfileModal({
   };
   return (
     <>
-      <div className={styles.darkBG} />
+      <div className={styles.darkBG} onClick={() => setOpenModal(false)} />
       <div className={styles.centered}>
         <div className={`h-[412px] w-[512px] ${styles.modal}`}>
           <div className={styles.modalHeader}>

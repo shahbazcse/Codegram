@@ -45,3 +45,35 @@ export const editUserProfile = async (token, data) => {
   );
   return response.data;
 };
+
+export const getAllUsers = async () => {
+  const response = await axios.get("/api/users");
+  return response.data.users;
+};
+
+export const doFollowUser = async (token, followUserId) => {
+  const response = await axios.post(
+    `/api/users/follow/${followUserId}`,
+    {},
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );
+
+  return response.data;
+};
+
+export const doUnfollowUser = async (token, followUserId) => {
+  const response = await axios.post(
+    `/api/users/unfollow/${followUserId}`,
+    {},
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );
+  return response.data;
+};

@@ -14,7 +14,7 @@ export default function AvatarModal({
 
   return (
     <>
-      <div className={styles.darkBG} />
+      <div className={styles.darkBG} onClick={() => setAvatarModal(false)} />
       <div className={styles.centered}>
         <div className={`h-[380px] w-[312px] ${styles.modal}`}>
           <div className={`${styles.modalHeader}`}>
@@ -27,7 +27,7 @@ export default function AvatarModal({
             </div>
           </div>
           <div className="flex flex-wrap">
-            {avatars.map(
+            {avatars.slice(0,12).map(
               (avatar) =>
                 avatar !== userDP && (
                   <div

@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { AuthContext } from "./AuthContext";
 import { v4 as uuidv4 } from "uuid";
-import { getAllPosts } from "../services/PostServices";
+import { getAllPosts, getAllUsers } from "../services/UserService";
 
 var rn = require("random-number");
 
@@ -41,6 +41,11 @@ export function AppProvider({ children }) {
 
   const reducerFn = (state, action) => {
     switch (action.type) {
+      case "setAllUsers":
+        return {
+          ...state,
+          allUsers: action.payload,
+        };
       case "setPosts":
         return {
           ...state,
@@ -55,6 +60,17 @@ export function AppProvider({ children }) {
         return setBooksmarks(state, action);
       case "setLikes":
         return setLikes(state);
+      case "setFollowing":
+        console.log(action.payload);
+        return {
+          ...state,
+          following: [...state.following, action.payload],
+        };
+      case "setFollowers":
+        return {
+          ...state,
+          followers: [...state.followers, action.payload],
+        };
       case "setTrending":
         return {
           ...state,
@@ -72,6 +88,7 @@ export function AppProvider({ children }) {
   };
 
   const initialState = {
+    allUsers: [],
     posts: [],
     bookmarks: [],
     liked: [],
@@ -95,6 +112,10 @@ export function AppProvider({ children }) {
   useEffect(() => {
     if (!token) {
       getData();
+      (async () => {
+        const response = await getAllUsers();
+        dispatch({ type: "setAllUsers", payload: response });
+      })();
     }
   });
 
