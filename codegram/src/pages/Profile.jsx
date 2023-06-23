@@ -186,7 +186,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
-      <h1 className="m-4 font-medium text-lg">Your Posts</h1>
+      <h1 className="m-4 font-medium text-lg">Latest Posts</h1>
       <UserFeed userFeedPosts={userFeedPosts} />
     </div>
   );
