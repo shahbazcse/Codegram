@@ -9,7 +9,8 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaRegBookmark } from "react-icons/fa";
 import { BsFillBookmarkFill } from "react-icons/bs";
-import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
 import { AppContext } from "../contexts/AppContext";
@@ -103,7 +104,7 @@ export default function Post({ post }) {
         </div>
 
         <div>
-          <div className="block sm:flex gap-2">
+          <div className="flex justify-between sm:flex gap-2">
             <div
               onClick={() => navigate(`/profile/${post.username}`)}
               className="flex gap-1 cursor-pointer"
@@ -112,11 +113,23 @@ export default function Post({ post }) {
                 {user?.firstName} {user?.lastName}
               </h1>
               <h1 className="text-gray-500">@{post?.username}</h1>
+              <span className="hidden sm:block text-gray-500 text-[12px] mt-[4px]">
+                •
+              </span>
+              <p className="text-gray-500">{post?.createdAt}</p>
             </div>
-            <span className="hidden sm:block text-gray-500 text-[12px] mt-[4px]">
-              •
-            </span>
-            <p className="text-gray-500">{post?.createdAt}</p>
+
+            {authUser.username === post.username && (
+              <div
+                className="flex gap-1 hover:bg-slate-700 rounded-md cursor-pointer p-[1px]"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  console.log("Open Edit Modal");
+                }}
+              >
+                <EditNoteIcon className="hoverEffect w-7 h-7" />
+              </div>
+            )}
           </div>
           <p>{post?.content}</p>
           <img
