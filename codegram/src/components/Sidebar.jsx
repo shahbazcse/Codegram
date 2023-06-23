@@ -10,15 +10,18 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import SearchIcon from "@mui/icons-material/Search";
 import MovingIcon from "@mui/icons-material/Moving";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { AuthContext } from "../contexts/AuthContext";
+import { CreatePostModal } from "./Modals/PostModal/CreatePostModal";
 
 export default function Sidebar({ drawer, setDrawer }) {
   const {
     state: { user },
     dispatch,
   } = useContext(AuthContext);
+
+  const [createModal, setCreateModal] = useState(false);
 
   const handleLogout = () => {
     dispatch({ type: "setToken", payload: null });
@@ -30,6 +33,7 @@ export default function Sidebar({ drawer, setDrawer }) {
         drawer ? "ml-[8px] mt-0" : "hidden"
       } sm:flex flex-col items-center xl:items-start xl:w-[380px] p-4 fixed h-full pr-8 xl:pr-8`}
     >
+      {createModal && <CreatePostModal setCreateModal={setCreateModal} />}
       {drawer && (
         <div
           className="sm:hidden mb-8 font-light text-6xl px-2 cursor-pointer text-red-500"
@@ -60,7 +64,7 @@ export default function Sidebar({ drawer, setDrawer }) {
           Icon={VerifiedOutlinedIcon}
         />
 
-        <div onClick={() => console.log("New Post Created")}>
+        <div onClick={() => setCreateModal(true)}>
           <Link className="text-[#d9d9d9] flex items-center justify-center xl:justify-start text-xl space-x-3 px-4 xl:py-2 pb-3 w-fit">
             <span className="xl:hidden">
               <AddCircleIcon />

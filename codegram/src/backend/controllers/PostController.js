@@ -1,5 +1,5 @@
 import { Response } from "miragejs";
-import { formatDate, requiresAuth } from "../utils/authUtils";
+import { formatDate, now, requiresAuth } from "../utils/authUtils";
 import { v4 as uuid } from "uuid";
 
 /**
@@ -87,8 +87,8 @@ export const createPostHandler = function (schema, request) {
         dislikedBy: [],
       },
       username: user.username,
-      createdAt: formatDate(),
-      updatedAt: formatDate(),
+      createdAt: now(),
+      updatedAt: now(),
     };
     this.db.posts.insert(post);
     return new Response(201, {}, { posts: this.db.posts });

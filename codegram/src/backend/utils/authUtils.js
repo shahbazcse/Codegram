@@ -23,4 +23,6 @@ export const requiresAuth = function (request) {
 };
 
 export const formatDate = () =>
-  dayjs.between("2020-06-10", "2023-12-31").format("YYYY-MM-DD");
+  dayjs.between("2020-06-10", "2023-06-23").format("YYYY-MM-DD");
+
+export const now = () => dayjs().format("YYYY-MM-DD");

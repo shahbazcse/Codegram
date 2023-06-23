@@ -3,7 +3,7 @@ import {
   doRemoveLike,
   getBookmarks,
 } from "../services/UserService";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { BsChat } from "react-icons/bs";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -16,6 +16,8 @@ import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
 import { AppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
+import { EditPostModal } from "./Modals/PostModal/EditPostModal";
+import { doDeletePost } from "../services/PostService";
 var rn = require("random-number");
 
 var randomNumber = {
@@ -35,6 +37,8 @@ export default function Post({ post }) {
     state: { bookmarks, liked, allUsers },
     dispatch,
   } = useContext(AppContext);
+
+  const [editModal, setEditModal] = useState(false);
 
   const likePost = async () => {
     const posts = await doLikePost(token, post._id);
@@ -81,6 +85,11 @@ export default function Post({ post }) {
     setBookmarks();
   };
 
+  const handleDeletePost = async () => {
+    const posts = await doDeletePost(post._id, token);
+    dispatch({ type: "setPosts", payload: posts });
+  };
+
   const openModal = () => {
     console.log("opening model ");
   };
@@ -95,6 +104,7 @@ export default function Post({ post }) {
 
   return (
     <div className="mt-4 border-t border-gray-500 px-4 pt-6 pb-4">
+      {editModal && <EditPostModal setEditModal={setEditModal} post={post} />}
       <div className="grid grid-cols-[48px,1fr] gap-4">
         <div
           onClick={() => navigate(`/profile/${post.username}`)}
@@ -134,7 +144,7 @@ export default function Post({ post }) {
                 className="flex gap-1 hover:bg-slate-700 rounded-md cursor-pointer p-[1px]"
                 onClick={(e) => {
                   e.stopPropagation();
-                  console.log("Open Edit Modal");
+                  setEditModal(true);
                 }}
               >
                 <EditNoteIcon className="hoverEffect w-7 h-7" />
@@ -202,10 +212,7 @@ export default function Post({ post }) {
             {authUser.username === post.username && (
               <RiDeleteBin5Line
                 className="hoverEffect w-7 h-7 p-1 hover:bg-slate-700 rounded-md cursor-pointer"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  console.log("Post Deleted");
-                }}
+                onClick={handleDeletePost}
               />
             )}
           </div>
