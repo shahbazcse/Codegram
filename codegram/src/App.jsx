@@ -8,7 +8,7 @@ import Profile from "./pages/Profile";
 import Login from "./components/Login/Login";
 import RightSidebar from "./components/RightSidebar";
 import Sidebar from "./components/Sidebar";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 import Mockman from "mockman-js";
 import TrendingNews from "./pages/TrendingNews";
@@ -44,7 +44,7 @@ function App() {
                 <Route path="/explore" element={<Explore />} />
                 <Route path="/bookmarks" element={<Booksmarks />} />
                 <Route path="/liked" element={<Liked />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/:username" element={<Profile />} />
                 <Route path="/trending" element={<TrendingNews />} />
                 <Route path="/trending/:newsId" element={<SingleNews />} />
                 <Route path="/verified" element={<Verified />} />

@@ -1,3 +1,8 @@
+import {
+  doLikePost,
+  doRemoveLike,
+  getBookmarks,
+} from "../services/UserService";
 import { useContext } from "react";
 import { BsChat } from "react-icons/bs";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
@@ -7,13 +12,11 @@ import { BsFillBookmarkFill } from "react-icons/bs";
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
 import { AppContext } from "../contexts/AppContext";
-import {
-  doLikePost,
-  doRemoveLike,
-  getBookmarks,
-} from "../services/UserService";
+import { useNavigate } from "react-router-dom";
 
 export default function Post({ post }) {
+  const navigate = useNavigate();
+
   const {
     state: { token },
   } = useContext(AuthContext);
@@ -77,13 +80,13 @@ export default function Post({ post }) {
 
   const user = allUsers.find(({ username }) => username === post.username);
 
-  const dummyImg =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS9Vu2kHRkEn3qBiH1szO1Qbxt4sP59Lt66Zu-O8tqpxqysYKfeyraCeAC1L0nLonfRjA&usqp=CAU";
-
   return (
-    <div className="mt-4 border-t border-gray-500 px-4 pt-6 pb-4 cursor-pointer">
+    <div className="mt-4 border-t border-gray-500 px-4 pt-6 pb-4">
       <div className="grid grid-cols-[48px,1fr] gap-4">
-        <div>
+        <div
+          onClick={() => navigate(`/profile/${post.username}`)}
+          className="cursor-pointer"
+        >
           <img
             className="h-12 w-12 rounded-full object-cover"
             src={user?.avatar}
@@ -93,10 +96,15 @@ export default function Post({ post }) {
 
         <div>
           <div className="block sm:flex gap-2">
-            <h1 className="font-medium">
-              {user?.firstName} {user?.lastName}
-            </h1>
-            <h1 className="text-gray-500">@{post?.username}</h1>
+            <div
+              onClick={() => navigate(`/profile/${post.username}`)}
+              className="flex gap-1 cursor-pointer"
+            >
+              <h1 className="font-medium">
+                {user?.firstName} {user?.lastName}
+              </h1>
+              <h1 className="text-gray-500">@{post?.username}</h1>
+            </div>
             <span className="hidden sm:block text-gray-500 text-[12px] mt-[4px]">
               •
             </span>
@@ -110,7 +118,7 @@ export default function Post({ post }) {
           />
 
           <div className="flex justify-between text-[20px] mt-4 w-[80%]">
-            <div className="flex gap-1 items-center hover:bg-slate-700 rounded-full">
+            <div className="flex gap-1 items-center hover:bg-slate-700 rounded-full cursor-pointer">
               <BsChat
                 className="hoverEffect w-7 h-7 p-1"
                 onClick={(e) => {
@@ -121,7 +129,7 @@ export default function Post({ post }) {
             </div>
 
             <div
-              className="flex gap-1 items-center pr-1 hover:bg-slate-700 rounded-full"
+              className="flex gap-1 items-center pr-1 hover:bg-slate-700 rounded-full cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 !isLiked ? likePost() : removeLike();
@@ -142,7 +150,7 @@ export default function Post({ post }) {
             </div>
 
             <div
-              className="flex gap-1 items-center hover:bg-slate-700 rounded-md"
+              className="flex gap-1 items-center hover:bg-slate-700 rounded-md cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 !bookmarked ? saveBookmark() : removeBookmark();
@@ -156,7 +164,7 @@ export default function Post({ post }) {
             </div>
 
             <RiDeleteBin5Line
-              className="hoverEffect w-7 h-7 p-1 hover:bg-slate-700 rounded-md"
+              className="hoverEffect w-7 h-7 p-1 hover:bg-slate-700 rounded-md cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 console.log("Post Deleted");

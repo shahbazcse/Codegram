@@ -6,18 +6,32 @@ import { AuthContext } from "../contexts/AuthContext";
 import EditProfileModal from "../components/Modals/UserProfileModals/EditProfileModal";
 import male from "../assets/avatars/male.png";
 import FollowModal from "../components/Modals/FollowModal/FollowModal";
+import { useParams } from "react-router-dom";
+import {
+  doFollowUser,
+  doUnfollowUser,
+  editUserProfile,
+} from "../services/UserService";
 
 export default function Profile() {
+  const { username: paramsUsername } = useParams();
+
   const {
-    state: { user },
+    state: { token, user: authUser },
+    dispatch,
   } = useContext(AuthContext);
 
   const {
-    state: { posts, isVerified },
+    state: { posts, allUsers },
   } = useContext(AppContext);
 
+  const currentUser =
+    paramsUsername === authUser.username
+      ? authUser
+      : allUsers.find(({ username }) => username === paramsUsername);
+
   const userFeedPosts = [
-    ...posts.filter(({ username }) => username === user.username),
+    ...posts.filter(({ username }) => username === currentUser.username),
   ];
 
   const [openModal, setOpenModal] = useState(false);
@@ -27,12 +41,40 @@ export default function Profile() {
     setOpenModal(!openModal);
   };
 
-  const userAbout = !user?.about ? (
+  const handleFollowUser = async (userId) => {
+    const response = await doFollowUser(token, userId);
+    const data = {
+      ...authUser,
+      following: [...authUser.following, response.followUser],
+    };
+    const { user: updatedUser } = await editUserProfile(token, data);
+    dispatch({ type: "setUser", payload: updatedUser });
+  };
+
+  const handleUnfollowUser = async (userId) => {
+    const response = await doUnfollowUser(token, userId);
+    const data = {
+      ...authUser,
+      following: [
+        ...authUser.following.filter(
+          ({ username }) => username !== response.followUser.username
+        ),
+      ],
+    };
+    const { user: updatedUser } = await editUserProfile(token, data);
+    dispatch({ type: "setUser", payload: updatedUser });
+  };
+
+  const userAbout = !currentUser?.about ? (
     <span className="text-slate-600">Write something about yourself</span>
   ) : (
-    user.about
+    currentUser.about
   );
-  const userDP = !user?.avatar ? male : user.avatar;
+  const userDP = !currentUser?.avatar ? male : currentUser.avatar;
+
+  const isFollowing = authUser.following.find(
+    (p) => p.username === currentUser.username
+  );
 
   return (
     <div className="">
@@ -46,8 +88,8 @@ export default function Profile() {
           </div>
           <div className="items-center justify-center flex-col">
             <h4 className="font-bold flex items-center justify-center">
-              {user?.firstName} {user?.lastName}
-              {user.isVerified && (
+              {currentUser?.firstName} {currentUser?.lastName}
+              {currentUser.isVerified && (
                 <VerifiedIcon
                   className="text-blue-500 ml-1"
                   fontSize="medium"
@@ -55,21 +97,35 @@ export default function Profile() {
               )}
             </h4>
             <p className="text-[#6e767d] flex items-center justify-center">
-              @{user?.username}
+              @{currentUser?.username}
             </p>
           </div>
-          <div
-            onClick={() => handleEditProfile()}
-            className="bg-blue-600 hover:bg-blue-700 m-auto w-24 rounded-md p-1.5  mt-3 flex items-center justify-center cursor-pointer"
-          >
-            Edit Profile
-          </div>
+          {currentUser.username === authUser.username ? (
+            <div
+              onClick={() => handleEditProfile()}
+              className="bg-blue-600 hover:bg-blue-700 m-auto w-24 rounded-md p-1.5  mt-3 flex items-center justify-center cursor-pointer"
+            >
+              Edit Profile
+            </div>
+          ) : (
+            <button
+              className="bg-white hover:bg-gray-300 text-black m-auto w-24 rounded-full p-1.5  mt-3 flex items-center justify-center cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                !isFollowing
+                  ? handleFollowUser(currentUser._id)
+                  : handleUnfollowUser(currentUser._id);
+              }}
+            >
+              {!isFollowing ? "Follow" : "Unfollow"}
+            </button>
+          )}
           {openModal && (
             <EditProfileModal
               setOpenModal={setOpenModal}
               userDP={userDP}
-              about={user?.about}
-              link={user?.portfolioURL}
+              about={currentUser?.about}
+              link={currentUser?.portfolioURL}
             />
           )}
           <h1 className="m-2 font-bold">About</h1>
@@ -78,9 +134,9 @@ export default function Profile() {
           </div>
           <h1 className="m-2 font-bold">Link</h1>
           <div className="bg-[#16181C] p-2 rounded-md m-auto flex items-center justify-center">
-            {user?.portfolioURL ? (
+            {currentUser?.portfolioURL ? (
               <a href="#" className="text-blue-600 hover:underline">
-                {user?.portfolioURL}
+                {currentUser?.portfolioURL}
               </a>
             ) : (
               <span className="text-slate-600">Add your portfolio link</span>
@@ -89,7 +145,7 @@ export default function Profile() {
           <div className="flex p-2 mt-2 rounded-md text-center justify-evenly">
             <div className="items-center justify-center flex-col">
               <h4 className="font-bold flex items-center justify-center">
-                {user?.following?.length | "0"}
+                {currentUser?.following?.length | "0"}
               </h4>
               <div
                 onClick={() =>
@@ -116,7 +172,7 @@ export default function Profile() {
             </div>
             <div className="items-center justify-center flex-col">
               <h4 className="font-bold flex items-center justify-center">
-                {user?.followers?.length | "0"}
+                {currentUser?.followers?.length | "0"}
               </h4>
               <div
                 onClick={() =>

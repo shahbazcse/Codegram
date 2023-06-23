@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/logos/messages.png";
 import SidebarLink from "./SidebarLink";
 import HomeIcon from "@mui/icons-material/Home";
@@ -15,8 +15,6 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import { AuthContext } from "../contexts/AuthContext";
 
 export default function Sidebar({ drawer, setDrawer }) {
-  const navigate = useNavigate();
-
   const {
     state: { user },
     dispatch,
@@ -81,11 +79,11 @@ export default function Sidebar({ drawer, setDrawer }) {
             <SidebarLink text="Logout" Icon={LogoutIcon} />
           </div>
           <Link
-            to="/profile"
+            to={`/profile/${user?.username}`}
             className="text-[#d9d9d9] mt-4 flex items-center justify-center xl:justify-start hover:bg-slate-800 hover:rounded-full px-1 py-1 w-fit"
           >
             <img
-              src={user.avatar}
+              src={user?.avatar}
               alt=""
               className="flex h-10 w-10 rounded-full xl:mr-2.5"
             />
@@ -94,7 +92,7 @@ export default function Sidebar({ drawer, setDrawer }) {
                 <h4 className="font-bold">
                   {user?.firstName} {user?.lastName}
                 </h4>
-                {user.isVerified && (
+                {user?.isVerified && (
                   <VerifiedIcon
                     className="text-blue-500 ml-1"
                     fontSize="small"

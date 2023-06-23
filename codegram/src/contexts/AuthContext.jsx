@@ -45,8 +45,6 @@ export function AuthProvider({ children }) {
 
   const [state, dispatch] = useReducer(reducerFn, initialState);
 
-  console.log("From AuthContext: ",state.user);
-
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       {children}

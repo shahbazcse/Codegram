@@ -1,11 +1,24 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { useParams } from "react-router-dom";
+import { AppContext } from "../../../contexts/AppContext";
 
 export default function FollowersList() {
+  const { username: paramsUsername } = useParams();
+
   const {
     state: { user },
     dispatch,
   } = useContext(AuthContext);
+
+  const {
+    state: { allUsers },
+  } = useContext(AppContext);
+
+  const currentUser =
+    paramsUsername === user.username
+      ? user
+      : allUsers.find(({ username }) => username === paramsUsername);
 
   const handleRemoveFollower = (userId) => {
     console.log("Removed follower");
@@ -16,7 +29,7 @@ export default function FollowersList() {
     dispatch({ type: "setUser", payload: updatedUser });
   };
 
-  const filteredUsers = user.followers;
+  const filteredUsers = currentUser.followers;
 
   return (
     <div className="flex-col">

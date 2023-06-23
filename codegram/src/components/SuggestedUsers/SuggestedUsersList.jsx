@@ -1,21 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import {
-  doFollowUser,
-  editUserProfile,
-  getAllUsers,
-} from "../../services/UserService";
+import { useContext } from "react";
+import { doFollowUser, editUserProfile } from "../../services/UserService";
 import { AuthContext } from "../../contexts/AuthContext";
 import { AppContext } from "../../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
 export default function SuggestedUsersList() {
-  // const filteredUsers = [
-  //   { _id: 1, fullName: "John Doe", username: "john" },
-  //   { _id: 2, fullName: "Tony Stark", username: "tony" },
-  //   { _id: 3, fullName: "Steve Rogers", username: "steve" },
-  //   { _id: 4, fullName: "Bruce Wayne", username: "bruce" },
-  //   { _id: 5, fullName: "Loki", username: "loki" },
-  // ];
+  const navigate = useNavigate();
 
   const {
     state: { user, token },
@@ -50,9 +41,7 @@ export default function SuggestedUsersList() {
             <div
               key={user._id}
               className="flex items-start gap-2 cursor-pointer py-3 px-2"
-              onClick={() => {
-                console.log("Open User Profile");
-              }}
+              onClick={() => navigate(`/profile/${user.username}`)}
             >
               <img
                 src={user.avatar}

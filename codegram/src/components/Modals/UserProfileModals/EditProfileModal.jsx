@@ -5,6 +5,7 @@ import { TbCameraPlus } from "react-icons/tb";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { editUserProfile } from "../../../services/UserService";
 import AvatarModal from "./AvatarModal";
+import { AppContext } from "../../../contexts/AppContext";
 
 export default function EditProfileModal({
   setOpenModal,
@@ -23,6 +24,11 @@ export default function EditProfileModal({
     dispatch,
   } = useContext(AuthContext);
 
+  const {
+    state: { allUsers },
+    dispatch: AppDispatch,
+  } = useContext(AppContext);
+
   const handleSave = async () => {
     const data = {
       ...user,
@@ -32,6 +38,21 @@ export default function EditProfileModal({
     };
     editUserProfile(token, data);
     dispatch({ type: "setUser", payload: data });
+
+    const updatedAllUsers = [
+      ...allUsers.map((p) =>
+        p.username === user.username
+          ? {
+              ...p,
+              avatar: changeAvatar,
+              about: changeAbout,
+              portfolioURL: changeLink,
+            }
+          : { ...p }
+      ),
+    ];
+    console.log(updatedAllUsers);
+    AppDispatch({ type: "setAllUsers", payload: updatedAllUsers });
     setOpenModal(false);
   };
   return (

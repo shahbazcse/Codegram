@@ -1,9 +1,12 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { doUnfollowUser, editUserProfile } from "../../../services/UserService";
+import { useParams } from "react-router-dom";
 
 export default function FollowingList() {
+  const { username: paramsUsername } = useParams();
+
   const {
     state: { token, user },
     dispatch,
@@ -12,6 +15,11 @@ export default function FollowingList() {
   const {
     state: { allUsers },
   } = useContext(AppContext);
+
+  const currentUser =
+    paramsUsername === user.username
+      ? user
+      : allUsers.find(({ username }) => username === paramsUsername);
 
   const handleUnfollowUser = async (userId) => {
     const response = await doUnfollowUser(token, userId);
@@ -30,8 +38,8 @@ export default function FollowingList() {
 
   const filteredUsers = allUsers.filter(
     ({ username }) =>
-      username !== user.username &&
-      user?.following?.find((p) => p.username === username)
+      username !== currentUser.username &&
+      currentUser?.following?.find((p) => p.username === username)
   );
 
   return (
