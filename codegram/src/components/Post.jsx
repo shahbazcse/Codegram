@@ -9,6 +9,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaRegBookmark } from "react-icons/fa";
 import { BsFillBookmarkFill } from "react-icons/bs";
+import VerifiedIcon from "@mui/icons-material/Verified";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
 import { AuthContext } from "../contexts/AuthContext";
@@ -87,7 +88,10 @@ export default function Post({ post }) {
   const bookmarked = bookmarks.find(({ _id }) => _id === post._id);
   const isLiked = liked.find(({ _id }) => _id === post._id);
 
-  const user = allUsers.find(({ username }) => username === post.username);
+  const user =
+    post.username === authUser.username
+      ? authUser
+      : allUsers.find(({ username }) => username === post.username);
 
   return (
     <div className="mt-4 border-t border-gray-500 px-4 pt-6 pb-4">
@@ -111,6 +115,12 @@ export default function Post({ post }) {
             >
               <h1 className="font-medium">
                 {user?.firstName} {user?.lastName}
+                {user.isVerified && (
+                  <VerifiedIcon
+                    className="text-blue-500 ml-1 mb-1"
+                    fontSize="small"
+                  />
+                )}
               </h1>
               <h1 className="text-gray-500">@{post?.username}</h1>
               <span className="hidden sm:block text-gray-500 text-[12px] mt-[4px]">

@@ -19,7 +19,11 @@ export default function FollowModal({ setFollowModal, type }) {
             </div>
           </div>
           <div className="flex flex-col text-start p-2 mx-4 my-2 text-md gap-1">
-            {type === "Following" ? <FollowingList /> : <FollowersList />}
+            {type === "Following" ? (
+              <FollowingList setFollowModal={setFollowModal} />
+            ) : (
+              <FollowersList setFollowModal={setFollowModal} />
+            )}
           </div>
         </div>
       </div>

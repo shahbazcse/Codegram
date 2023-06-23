@@ -2,10 +2,13 @@ import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { doUnfollowUser, editUserProfile } from "../../../services/UserService";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import VerifiedIcon from "@mui/icons-material/Verified";
 
-export default function FollowingList() {
+export default function FollowingList({ setFollowModal }) {
   const { username: paramsUsername } = useParams();
+
+  const navigate = useNavigate();
 
   const {
     state: { token, user },
@@ -48,7 +51,7 @@ export default function FollowingList() {
       {filteredUsers.map((user) => (
         <div
           key={user._id}
-          className="flex items-start justify-start gap-2 cursor-pointer p-3"
+          className="flex items-start justify-start gap-2 p-3"
           onClick={() => {
             console.log("Open User Profile");
           }}
@@ -56,13 +59,24 @@ export default function FollowingList() {
           <img
             src={user.avatar}
             alt=""
-            className="h-8 w-8 rounded-full object-cover"
-            height="120px"
-            width="120px"
+            className="h-12 w-12 rounded-full object-cover cursor-pointer"
+            onClick={() => {
+              setFollowModal({ open: false, type: "" });
+              navigate(`/profile/${user.username}`);
+            }}
           />
-          <div className="flex flex-col grow -mt-0.5">
+          <div
+            onClick={() => {
+              setFollowModal({ open: false, type: "" });
+              navigate(`/profile/${user.username}`);
+            }}
+            className="flex flex-col grow my-1 cursor-pointer"
+          >
             <span className="text-sm">
               {user.firstName} {user.lastName}
+              {user.isVerified && (
+                <VerifiedIcon className="text-blue-500 ml-1" fontSize="small" />
+              )}
             </span>
             <span className="text-sm text-lightGrey -mt-1">
               @{user.username}
@@ -70,7 +84,7 @@ export default function FollowingList() {
           </div>
 
           <button
-            className="bg-white text-sm hover:bg-red-600 text-black py-1 px-4 rounded-full"
+            className="bg-white text-sm hover:bg-red-600 text-black py-1 px-4 my-2 rounded-full"
             onClick={(e) => {
               e.stopPropagation();
               handleUnfollowUser(user._id);

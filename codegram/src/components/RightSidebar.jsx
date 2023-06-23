@@ -11,12 +11,12 @@ export default function RightSidebar() {
     state: { user },
   } = useContext(AuthContext);
   const {
-    state: { isVerified, allUsers },
+    state: { allUsers },
   } = useContext(AppContext);
   return (
     <div className="hidden justify-end lg:block md:block md:mr-4 w-[350px] mt-2">
       <SearchBar />
-      {!isVerified && <VerifiedSidebar />}
+      {!user.isVerified && <VerifiedSidebar />}
       {user?.following?.length !== allUsers.length - 1 && (
         <SuggestedUserNonMobile />
       )}

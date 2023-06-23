@@ -17,8 +17,6 @@ export default function Verified() {
     dispatch({ type: "setUser", payload: updatedUser });
   };
 
-  console.log(user);
-
   return (
     <div className="sticky top-0 text-center justify-between px-4 py-2">
       <h1 className="font-medium text-[20px]">Verify your account</h1>

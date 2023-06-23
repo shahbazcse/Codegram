@@ -172,7 +172,9 @@ export default function Profile() {
             </div>
             <div className="items-center justify-center flex-col">
               <h4 className="font-bold flex items-center justify-center">
-                {currentUser?.followers?.length | "0"}
+                {currentUser.followers.filter(
+                  (p) => p.username !== paramsUsername && { ...p }
+                ).length | "0"}
               </h4>
               <div
                 onClick={() =>
