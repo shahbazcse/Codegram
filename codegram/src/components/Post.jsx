@@ -9,16 +9,24 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaRegBookmark } from "react-icons/fa";
 import { BsFillBookmarkFill } from "react-icons/bs";
+import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
 import { AppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
+var rn = require("random-number");
+
+var randomNumber = {
+  min: 0,
+  max: 1000,
+  integer: true,
+};
 
 export default function Post({ post }) {
   const navigate = useNavigate();
 
   const {
-    state: { token },
+    state: { token, user: authUser },
   } = useContext(AuthContext);
 
   const {
@@ -163,13 +171,20 @@ export default function Post({ post }) {
               )}
             </div>
 
-            <RiDeleteBin5Line
-              className="hoverEffect w-7 h-7 p-1 hover:bg-slate-700 rounded-md cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                console.log("Post Deleted");
-              }}
-            />
+            <div className="flex gap-1 items-center hover:bg-slate-700 rounded-md pr-1 cursor-pointer">
+              <SignalCellularAltIcon className="text-slate-500" />
+              <span className="text-sm">{rn(randomNumber)}K</span>
+            </div>
+
+            {authUser.username === post.username && (
+              <RiDeleteBin5Line
+                className="hoverEffect w-7 h-7 p-1 hover:bg-slate-700 rounded-md cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  console.log("Post Deleted");
+                }}
+              />
+            )}
           </div>
         </div>
       </div>
