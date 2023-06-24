@@ -27,7 +27,7 @@ export function CreatePostModal({ setCreateModal }) {
     <>
       <div className={styles.darkBG} onClick={() => setCreateModal(false)} />
       <div className={styles.centered}>
-        <div className={`h-[336px] w-[512px] ${styles.modal}`}>
+        <div className={`h-[324px] w-[512px] ${styles.modal}`}>
           <div className={`ml-40 ${styles.modalHeader}`}>
             <div className={`${styles.heading}`}>New Post</div>
             <div
@@ -37,12 +37,12 @@ export function CreatePostModal({ setCreateModal }) {
               <RiCloseLine className="text-3xl" />
             </div>
           </div>
-          <div className="flex flex-col justify-center text-center p-8 mx-4 text-md gap-1">
+          <div className="flex flex-col justify-center text-center px-8 py-1 mx-4 text-md gap-1">
             <textarea
               type="text"
               value={newPost}
               placeholder="What's Happening?!"
-              className="flex mb-4 py-2 px-6 text-lg text-white rounded border border-slate-700 bg-black focus:border-blue-400 focus:outline"
+              className="flex mb-4 h-44 p-6 text-white text-md rounded border border-slate-700 bg-black focus:border-blue-400 focus:outline"
               onChange={(e) => setNewPost(e.target.value)}
             />
             <div

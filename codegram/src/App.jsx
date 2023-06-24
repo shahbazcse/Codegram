@@ -10,13 +10,10 @@ import RightSidebar from "./components/RightSidebar";
 import Sidebar from "./components/Sidebar";
 import { useContext, useState } from "react";
 import { AuthContext } from "./contexts/AuthContext";
-import Mockman from "mockman-js";
 import TrendingNews from "./pages/TrendingNews";
 import SingleNews from "./components/Trending/SingleNews";
 import Verified from "./pages/Verified";
 import About from "./pages/About";
-
-const isMock = window.location.pathname === "/mockman";
 
 function App() {
   const {
@@ -55,12 +52,8 @@ function App() {
             <RightSidebar />
           </div>
         </main>
-      ) : !isMock ? (
-        <>
-          <Login />
-        </>
       ) : (
-        <Mockman />
+        <Login />
       )}
     </div>
   );
