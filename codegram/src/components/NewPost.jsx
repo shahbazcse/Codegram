@@ -23,7 +23,7 @@ export default function NewPost() {
 
   return (
     <div className={`mt-4 flex flex-col gap-2 px-4`}>
-      <div className="bg-[#16181C] flex gap-2 rounded-md py-2 px-4 text-white items-center text-[20px] sticky top-1 z-10">
+      <div className="bg-[#16181C] flex gap-2 rounded-md py-2 px-4 text-white items-center text-[20px]">
         <textarea
           className="grow resize-none bg-transparent w-[100%] outline-none text-[16px] h-24"
           type="text"

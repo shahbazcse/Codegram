@@ -16,6 +16,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { CreatePostModal } from "./Modals/PostModal/CreatePostModal";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import male from "../assets/avatars/male.png";
+import SearchModalMobile from "./Modals/SearchModal/SearchModalMobile";
 
 export default function Sidebar({ drawer, setDrawer }) {
   const {
@@ -24,12 +25,13 @@ export default function Sidebar({ drawer, setDrawer }) {
   } = useContext(AuthContext);
 
   const [createModal, setCreateModal] = useState(false);
+  const [searchModal, setSearchModal] = useState(false);
 
   const handleLogout = () => {
     dispatch({ type: "setToken", payload: null });
   };
 
-  const userAvatar = user.avatar ? user.avatar : male
+  const userAvatar = user.avatar ? user.avatar : male;
 
   return (
     <div
@@ -38,6 +40,7 @@ export default function Sidebar({ drawer, setDrawer }) {
       } sm:flex flex-col items-center xl:items-start xl:w-[380px] p-4 fixed h-full pr-8 xl:pr-8`}
     >
       {createModal && <CreatePostModal setCreateModal={setCreateModal} />}
+      {searchModal && <SearchModalMobile setSearchModal={setSearchModal} />}
       {drawer && (
         <div
           className="sm:hidden mb-8 font-light text-6xl px-2 cursor-pointer text-red-500"
@@ -80,11 +83,14 @@ export default function Sidebar({ drawer, setDrawer }) {
           </Link>
         </div>
 
-        <div onClick={() => console.log("Search User")} className="md:hidden">
+        <div onClick={() => setSearchModal(true)} className="md:hidden">
           <SidebarLink text="" Icon={SearchIcon} />
         </div>
         <div className="">
-          <div onClick={() => handleLogout()} className="xl:mt-48 md:mt-[500%] sm:mt-[400%] mt-[260%]">
+          <div
+            onClick={() => handleLogout()}
+            className="xl:mt-48 md:mt-[500%] sm:mt-[400%] mt-[260%]"
+          >
             <SidebarLink text="Logout" Icon={LogoutIcon} />
           </div>
           <Link
