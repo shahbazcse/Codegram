@@ -56,7 +56,7 @@ export default function Profile() {
     const data = {
       ...authUser,
       following: [
-        ...authUser.following.filter(
+        ...authUser?.following?.filter(
           ({ username }) => username !== response.followUser.username
         ),
       ],

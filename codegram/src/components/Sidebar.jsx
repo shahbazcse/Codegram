@@ -15,6 +15,7 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import { AuthContext } from "../contexts/AuthContext";
 import { CreatePostModal } from "./Modals/PostModal/CreatePostModal";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import male from "../assets/avatars/male.png";
 
 export default function Sidebar({ drawer, setDrawer }) {
   const {
@@ -27,6 +28,8 @@ export default function Sidebar({ drawer, setDrawer }) {
   const handleLogout = () => {
     dispatch({ type: "setToken", payload: null });
   };
+
+  const userAvatar = user.avatar ? user.avatar : male
 
   return (
     <div
@@ -89,7 +92,7 @@ export default function Sidebar({ drawer, setDrawer }) {
             className="text-[#d9d9d9] mt-4 flex items-center justify-center xl:justify-start hover:bg-slate-800 hover:rounded-full px-1 py-1 w-fit"
           >
             <img
-              src={user?.avatar}
+              src={userAvatar}
               alt=""
               className="flex h-10 w-10 rounded-full xl:mr-2.5"
             />

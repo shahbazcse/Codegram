@@ -2,6 +2,7 @@ import { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { signupUser } from "../../services/AuthService";
+import { dummyFollowers } from '../../backend/db/dummyData';
 
 export default function SignupForm({ loginForm, setLoginForm }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +13,13 @@ export default function SignupForm({ loginForm, setLoginForm }) {
     lastName: "",
     username: "",
     password: "",
+    avatar: "",
+    about: "",
+    portfolioURL: "",
+    isVerified: false,
+    followers: [...dummyFollowers],
+    following: [],
+    bookmarks: [],
   });
 
   const handleSignup = () => {
@@ -29,8 +37,8 @@ export default function SignupForm({ loginForm, setLoginForm }) {
           <form className="mt-8" action="" method="POST">
             <div className="relative flex m-4">
               <input
-                id="email"
-                name="email"
+                id="username"
+                name="username"
                 type="text"
                 className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
                 placeholder="john@doe.com"
@@ -49,10 +57,10 @@ export default function SignupForm({ loginForm, setLoginForm }) {
                 )}
               </span>
               <label
-                htmlFor="email"
+                htmlFor="username"
                 className="absolute left-0 -top-3.5 text-white text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-placeholder-shown:pl-2 peer-focus:-top-3.5 peer-focus:text-white peer-focus:text-sm"
               >
-                Enter Email
+                Enter Username
               </label>
             </div>
             <div className="mt-6 relative flex m-4">
