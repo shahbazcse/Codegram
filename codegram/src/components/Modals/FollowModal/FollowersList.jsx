@@ -3,6 +3,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../../../contexts/AppContext";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import { getAllUsers } from "../../../services/UserService";
 
 export default function FollowersList({ setFollowModal }) {
   const { username: paramsUsername } = useParams();
@@ -10,12 +11,13 @@ export default function FollowersList({ setFollowModal }) {
   const navigate = useNavigate();
 
   const {
-    state: { user: authUser },
+    state: { token, user: authUser },
     dispatch,
   } = useContext(AuthContext);
 
   const {
     state: { allUsers },
+    dispatch: AppDispatch,
   } = useContext(AppContext);
 
   const currentUser =
@@ -23,13 +25,15 @@ export default function FollowersList({ setFollowModal }) {
       ? authUser
       : allUsers.find(({ username }) => username === paramsUsername);
 
-  const handleRemoveFollower = (userId) => {
+  const handleRemoveFollower = async (userId) => {
     console.log("Removed follower");
     const updatedUser = {
       ...authUser,
       followers: authUser.followers.filter(({ _id }) => _id !== userId),
     };
     dispatch({ type: "setUser", payload: updatedUser });
+    const updatedUsers = await getAllUsers();
+    AppDispatch({ type: "setAllUsers", payload: updatedUsers });
   };
 
   const filteredUsers = currentUser.followers;

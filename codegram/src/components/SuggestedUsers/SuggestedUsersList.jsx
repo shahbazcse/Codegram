@@ -1,5 +1,10 @@
 import { useContext } from "react";
-import { doFollowUser, editUserProfile } from "../../services/UserService";
+import {
+  doFollowUser,
+  editUserProfile,
+  getAllUsers,
+  updateFollowUser,
+} from "../../services/UserService";
 import { AuthContext } from "../../contexts/AuthContext";
 import { AppContext } from "../../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +20,7 @@ export default function SuggestedUsersList() {
 
   const {
     state: { allUsers },
+    dispatch: AppDispatch,
   } = useContext(AppContext);
 
   const handleFollowUser = async (userId) => {
@@ -25,6 +31,8 @@ export default function SuggestedUsersList() {
     };
     const { user: updatedUser } = await editUserProfile(token, data);
     dispatch({ type: "setUser", payload: updatedUser });
+    const updatedUsers = await getAllUsers();
+    AppDispatch({ type: "setAllUsers", payload: updatedUsers });
   };
 
   const filteredUsers = allUsers.filter(

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { doUnfollowUser, editUserProfile } from "../../../services/UserService";
+import { doUnfollowUser, editUserProfile, getAllUsers } from "../../../services/UserService";
 import { useNavigate, useParams } from "react-router-dom";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
@@ -16,7 +16,7 @@ export default function FollowingList({ setFollowModal }) {
   } = useContext(AuthContext);
 
   const {
-    state: { allUsers },
+    state: { allUsers }, dispatch: AppDispatch
   } = useContext(AppContext);
 
   const currentUser =
@@ -37,6 +37,8 @@ export default function FollowingList({ setFollowModal }) {
     };
     const { user: updatedUser } = await editUserProfile(token, data);
     dispatch({ type: "setUser", payload: updatedUser });
+    const updatedUsers = await getAllUsers();
+    AppDispatch({ type: "setAllUsers", payload: updatedUsers });
   };
 
   const filteredUsers = allUsers.filter(
@@ -83,7 +85,7 @@ export default function FollowingList({ setFollowModal }) {
             </span>
           </div>
 
-          <button
+          {currentUser.username === paramsUsername && <button
             className="bg-white text-sm hover:bg-red-600 text-black py-1 px-4 my-2 rounded-full"
             onClick={(e) => {
               e.stopPropagation();
@@ -91,7 +93,7 @@ export default function FollowingList({ setFollowModal }) {
             }}
           >
             Unfollow
-          </button>
+          </button>}
         </div>
       ))}
     </div>

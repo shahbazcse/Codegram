@@ -25,6 +25,7 @@ import {
   unfollowUserHandler,
   editUserHandler,
 } from "./backend/controllers/UserController";
+import { dummyFollowers } from "./backend/db/dummyData";
 
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
@@ -44,7 +45,7 @@ export function makeServer({ environment = "development" } = {}) {
       users.forEach((item) =>
         server.create("user", {
           ...item,
-          // followers: [],
+          followers: [...dummyFollowers.slice(0, 2).map((p) => p)],
           following: [],
           bookmarks: [],
         })

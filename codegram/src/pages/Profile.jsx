@@ -11,6 +11,7 @@ import {
   doFollowUser,
   doUnfollowUser,
   editUserProfile,
+  getAllUsers,
 } from "../services/UserService";
 
 export default function Profile() {
@@ -22,7 +23,7 @@ export default function Profile() {
   } = useContext(AuthContext);
 
   const {
-    state: { posts, allUsers },
+    state: { posts, allUsers }, dispatch: AppDispatch
   } = useContext(AppContext);
 
   const currentUser =
@@ -49,6 +50,8 @@ export default function Profile() {
     };
     const { user: updatedUser } = await editUserProfile(token, data);
     dispatch({ type: "setUser", payload: updatedUser });
+    const updatedUsers = await getAllUsers();
+    AppDispatch({ type: "setAllUsers", payload: updatedUsers });
   };
 
   const handleUnfollowUser = async (userId) => {
@@ -63,6 +66,8 @@ export default function Profile() {
     };
     const { user: updatedUser } = await editUserProfile(token, data);
     dispatch({ type: "setUser", payload: updatedUser });
+    const updatedUsers = await getAllUsers();
+    AppDispatch({ type: "setAllUsers", payload: updatedUsers });
   };
 
   const userAbout = !currentUser?.about ? (
