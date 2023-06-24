@@ -14,6 +14,7 @@ import Mockman from "mockman-js";
 import TrendingNews from "./pages/TrendingNews";
 import SingleNews from "./components/Trending/SingleNews";
 import Verified from "./pages/Verified";
+import About from "./pages/About";
 
 const isMock = window.location.pathname === "/mockman";
 
@@ -48,6 +49,7 @@ function App() {
                 <Route path="/trending" element={<TrendingNews />} />
                 <Route path="/trending/:newsId" element={<SingleNews />} />
                 <Route path="/verified" element={<Verified />} />
+                <Route path="/about" element={<About />} />
               </Routes>
             </section>
             <RightSidebar />

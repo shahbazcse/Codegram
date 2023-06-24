@@ -14,6 +14,7 @@ import { useContext, useState } from "react";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { AuthContext } from "../contexts/AuthContext";
 import { CreatePostModal } from "./Modals/PostModal/CreatePostModal";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 export default function Sidebar({ drawer, setDrawer }) {
   const {
@@ -63,6 +64,7 @@ export default function Sidebar({ drawer, setDrawer }) {
           to="/verified"
           Icon={VerifiedOutlinedIcon}
         />
+        <SidebarLink text="About" to="/about" Icon={InfoOutlinedIcon} />
 
         <div onClick={() => setCreateModal(true)}>
           <Link className="text-[#d9d9d9] flex items-center justify-center xl:justify-start text-xl space-x-3 px-4 xl:py-2 pb-3 w-fit">
@@ -79,7 +81,7 @@ export default function Sidebar({ drawer, setDrawer }) {
           <SidebarLink text="" Icon={SearchIcon} />
         </div>
         <div className="">
-          <div onClick={() => handleLogout()} className="xl:mt-64 sm:mt-[720%]">
+          <div onClick={() => handleLogout()} className="xl:mt-48 md:mt-[500%] sm:mt-[400%] mt-[260%]">
             <SidebarLink text="Logout" Icon={LogoutIcon} />
           </div>
           <Link
