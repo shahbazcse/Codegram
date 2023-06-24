@@ -45,7 +45,7 @@ export function makeServer({ environment = "development" } = {}) {
       users.forEach((item) =>
         server.create("user", {
           ...item,
-          followers: [...dummyFollowers.slice(0, 2).map((p) => p)],
+          followers: [...dummyFollowers],
           following: [],
           bookmarks: [],
         })
