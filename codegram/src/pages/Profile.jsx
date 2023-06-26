@@ -86,7 +86,7 @@ export default function Profile() {
   );
 
   return (
-    <div className="">
+    <div>
       <div className="sm:sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
         User Profile
       </div>
@@ -158,19 +158,21 @@ export default function Profile() {
               link={currentUser?.portfolioURL}
             />
           )}
-          <h1 className="m-2 font-bold">About</h1>
-          <div className="bg-[#16181C] w-[30rem] p-2 rounded-md">
-            {userAbout}
-          </div>
-          <h1 className="m-2 font-bold">Link</h1>
-          <div className="bg-[#16181C] p-2 rounded-md m-auto flex items-center justify-center">
-            {currentUser?.portfolioURL ? (
-              <a href="#" className="text-blue-600 hover:underline">
-                {currentUser?.portfolioURL}
-              </a>
-            ) : (
-              <span className="text-slate-600">Add your portfolio link</span>
-            )}
+          <div className="">
+            <h1 className="m-2 font-bold">About</h1>
+            <div className="bg-[#16181C] w-[20rem] sm:w-[30rem] p-2 rounded-md">
+              {userAbout}
+            </div>
+            <h1 className="m-2 font-bold">Link</h1>
+            <div className="bg-[#16181C] p-2 rounded-md m-auto flex items-center justify-center">
+              {currentUser?.portfolioURL ? (
+                <a href="#" className="text-blue-600 hover:underline">
+                  {currentUser?.portfolioURL}
+                </a>
+              ) : (
+                <span className="text-slate-600">Add your portfolio link</span>
+              )}
+            </div>
           </div>
           <div className="flex p-2 mt-2 rounded-md text-center justify-evenly">
             <div className="items-center justify-center flex-col">
