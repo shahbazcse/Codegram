@@ -11,9 +11,14 @@ export default function TrendingNews() {
 
   return (
     <div>
-      <div className="sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
+      <div className="sm:sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
         Trending News
       </div>
+      {!trending.length && (
+        <div className="flex items-center justify-center h-[18rem] sm:h-0 sm:mt-[20rem] m-auto font-bold text-2xl">
+          No News To Show
+        </div>
+      )}
       {trending.map(
         ({
           _id,
@@ -26,10 +31,7 @@ export default function TrendingNews() {
         }) => (
           <div key={_id}>
             <div className="bg-slate-800 text-white m-4 p-4 rounded-md">
-              <Link
-                to={`/trending/${_id}`}
-                className="hover:underline"
-              >
+              <Link to={`/trending/${_id}`} className="hover:underline">
                 <h1 className="text-lg font-bold">{title}</h1>
               </Link>
               <div className="flex justify-end text-slate-400 my-2">

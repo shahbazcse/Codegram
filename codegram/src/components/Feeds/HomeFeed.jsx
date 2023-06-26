@@ -34,6 +34,11 @@ export default function Feed({ sortBy }) {
 
   return (
     <>
+      {!sortedPost.length && (
+        <div className="flex items-center justify-center h-[18rem] sm:h-0 sm:mt-[20rem] m-auto font-bold text-2xl">
+          No Posts
+        </div>
+      )}
       {sortedPost.map((post) => (
         <Post key={post._id} post={post} />
       ))}

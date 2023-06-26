@@ -4,20 +4,12 @@ import NewPost from "../components/NewPost";
 import SortPostsBar from "../components/SortPostsBar";
 import SuggestedUserMobile from "../components/SuggestedUsers/SuggestedUserMobile";
 
-export default function Home({ drawer, setDrawer }) {
+export default function Home() {
   const [sortBy, setSortBy] = useState("");
   return (
-    <div>
-      <div className="flex sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
-        {!drawer && (
-          <div
-            className="sm:hidden pt-2 pl-4 text-4xl cursor-pointer"
-            onClick={() => setDrawer(true)}
-          >
-            &#9776;
-          </div>
-        )}
-        <div className="flex justify-center items-center m-auto">Home</div>
+    <div >
+      <div className="sm:sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
+        Home
       </div>
       <NewPost />
       <SuggestedUserMobile />

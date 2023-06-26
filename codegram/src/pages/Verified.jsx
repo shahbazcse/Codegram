@@ -18,8 +18,8 @@ export default function Verified() {
   };
 
   return (
-    <div>
-      <div className="sticky top-0 bg-black  text-center justify-between px-4 py-2">
+    <div >
+      <div className="sm:sticky top-0 bg-black  text-center justify-between px-4 py-2">
         <h1 className="font-medium text-[20px]">Verify your account</h1>
       </div>
       <div className="bg-[#16181C] rounded-[20px] text-white max-h-screen text-center justify-between m-4 px-4 py-4">

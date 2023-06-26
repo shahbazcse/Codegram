@@ -17,10 +17,15 @@ export default function Booksmarks() {
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
   return (
-    <div>
-      <div className="sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
+    <div className="">
+      <div className="sm:sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
         Bookmarks
       </div>
+      {!sortedPost.length && (
+        <div className="flex items-center justify-center h-[52rem] sm:h-0 sm:mt-[20rem] m-auto font-bold text-2xl">
+          No Posts
+        </div>
+      )}
       {sortedPost.map((post) => (
         <Post key={post._id} post={post} />
       ))}

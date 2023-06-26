@@ -2,17 +2,19 @@ import UserFeed from "../components/Feeds/UserFeed";
 import { useContext, useState } from "react";
 import { AppContext } from "../contexts/AppContext";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { AuthContext } from "../contexts/AuthContext";
 import EditProfileModal from "../components/Modals/UserProfileModals/EditProfileModal";
 import male from "../assets/avatars/male.png";
 import FollowModal from "../components/Modals/FollowModal/FollowModal";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import {
   doFollowUser,
   doUnfollowUser,
   editUserProfile,
   getAllUsers,
 } from "../services/UserService";
+import OptionsModal from "../components/Modals/UserProfileModals/OptionsModal";
 
 export default function Profile() {
   const { username: paramsUsername } = useParams();
@@ -23,7 +25,8 @@ export default function Profile() {
   } = useContext(AuthContext);
 
   const {
-    state: { posts, allUsers }, dispatch: AppDispatch
+    state: { posts, allUsers },
+    dispatch: AppDispatch,
   } = useContext(AppContext);
 
   const currentUser =
@@ -37,6 +40,7 @@ export default function Profile() {
 
   const [openModal, setOpenModal] = useState(false);
   const [followModal, setFollowModal] = useState({ open: false, type: "" });
+  const [optionsModal, setOptionsModal] = useState(false);
 
   const handleEditProfile = () => {
     setOpenModal(!openModal);
@@ -83,7 +87,7 @@ export default function Profile() {
 
   return (
     <div className="">
-      <div className="sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
+      <div className="sm:sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
         User Profile
       </div>
       <div className=" flex items-center justify-center m-4 mt-2 p-4 border-solid border-[1px] rounded-[8px] border-gray-400 text-white">
@@ -106,11 +110,32 @@ export default function Profile() {
             </p>
           </div>
           {currentUser.username === authUser.username ? (
-            <div
-              onClick={() => handleEditProfile()}
-              className="bg-blue-600 hover:bg-blue-700 m-auto w-24 rounded-md p-1.5  mt-3 flex items-center justify-center cursor-pointer"
-            >
-              Edit Profile
+            <div className="flex-col items-center justify-center">
+              <div className="flex items-center justify-center">
+                <div
+                  onClick={() => handleEditProfile()}
+                  className="bg-blue-600 hover:bg-blue-700 rounded-md p-1.5  mt-3 cursor-pointer"
+                >
+                  Edit Profile
+                </div>
+                <div
+                  onClick={() => setOptionsModal(true)}
+                  className="sm:hidden ml-4 mt-3 p-1 bg-slate-800 rounded-full"
+                >
+                  <MoreVertIcon />
+                </div>
+                {optionsModal && (
+                  <OptionsModal setOptionsModal={setOptionsModal} />
+                )}
+              </div>
+              <div className="sm:hidden flex items-center justify-center mt-4">
+                <Link
+                  to="/verified"
+                  className="px-3 py-2 text-black text-lg bg-blue-600 hover:bg-blue-700 rounded-full"
+                >
+                  Get Verified
+                </Link>
+              </div>
             </div>
           ) : (
             <button
