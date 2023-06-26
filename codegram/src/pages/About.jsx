@@ -5,7 +5,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 export default function About() {
   return (
-    <div className="h-[56rem] sm:h-0">
+    <div >
       <div className="sm:sticky top-0 bg-black  text-center justify-between px-4 py-2">
         <h1 className="font-medium text-[20px]">About</h1>
       </div>
