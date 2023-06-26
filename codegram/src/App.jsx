@@ -33,7 +33,7 @@ function App() {
             } xl:ml-0 md:ml-6 sm:ml-6`}
             style={{ transition: `${drawer && "margin-left 0.5s"}` }}
           >
-            <section className="sm:ml-[81px] xl:ml-[340px] w-[600px] min-h-screen border-x border-gray-400 text-white py-2">
+            <section className="flex-col sm:ml-[81px] xl:ml-[340px] w-[600px] min-h-screen border-x border-gray-400 text-white py-2">
               <Routes>
                 <Route
                   path="/"

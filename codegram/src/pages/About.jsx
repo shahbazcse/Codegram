@@ -5,17 +5,18 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 export default function About() {
   return (
-    <div className="sticky top-0 text-center justify-between px-4 py-2">
-      <h1 className="font-medium text-[20px]">About</h1>
-      <div className="flex-col bg-[#16181C] rounded-[20px] text-white mt-4 p-4">
+    <div>
+      <div className="sticky top-0 bg-black  text-center justify-between px-4 py-2">
+        <h1 className="font-medium text-[20px]">About</h1>
+      </div>
+      <div className="flex-col bg-[#16181C] rounded-[20px] text-white justify-center text-center m-4 mt-4 p-4">
         <div className="bg-black rounded-[20px] text-white text-center px-4 py-4 pb-6 mb-4">
           <p className="font-bold underline underline-offset-8 text-xl mx-36 mb-6">
             About Codegram
           </p>
           <div className="flex-col text-slate-400 text-left">
             <p className="mb-3">
-              Codegram is a social media app made using React and mock
-              backend.
+              Codegram is a social media app made using React and mock backend.
             </p>
             <p className="mb-3">
               The source code is available on{" "}
@@ -62,9 +63,7 @@ export default function About() {
               />
             </a>
           </div>
-          <div className="mt-4">
-            Shahbaz Ahmad © 2023
-          </div>
+          <div className="mt-4">Shahbaz Ahmad © 2023</div>
         </div>
       </div>
     </div>

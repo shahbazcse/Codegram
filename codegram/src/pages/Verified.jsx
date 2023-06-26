@@ -18,9 +18,11 @@ export default function Verified() {
   };
 
   return (
-    <div className="sticky top-0 text-center justify-between px-4 py-2">
-      <h1 className="font-medium text-[20px]">Verify your account</h1>
-      <div className="bg-[#16181C] rounded-[20px] text-white max-h-screen mt-4 px-4 py-4">
+    <div>
+      <div className="sticky top-0 bg-black  text-center justify-between px-4 py-2">
+        <h1 className="font-medium text-[20px]">Verify your account</h1>
+      </div>
+      <div className="bg-[#16181C] rounded-[20px] text-white max-h-screen text-center justify-between m-4 px-4 py-4">
         <h1 className="text-[20px] font-medium mb-4 mt-4">
           Blue Checkmark is free for coders!
           <VerifiedIcon className="text-blue-500 ml-1" fontSize="large" />
