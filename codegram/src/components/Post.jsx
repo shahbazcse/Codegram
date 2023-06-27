@@ -151,7 +151,7 @@ export default function Post({ post }) {
               </div>
             )}
           </div>
-          <p>{post?.content}</p>
+          <div className="mr-6">{post?.content}</div>
           <img
             className="max-h-[450px] object-cover rounded-[20px] mt-2"
             src=""
