@@ -63,8 +63,5 @@ To fork the Codegram repository, follow these steps:
 4. Push to the branch: git push origin feature/your-feature-name
 5. Open a pull request
 
-### License
-This project is licensed under the MIT License. Feel free to modify and use the code as per the terms of the license.
-
 ### Contact
 If you have any questions or suggestions regarding Codegram, please feel free to reach out at <a>cseshahbaz@gmail.com</a>
