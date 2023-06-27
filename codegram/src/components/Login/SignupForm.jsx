@@ -187,7 +187,7 @@ export default function SignupForm({ loginForm, setLoginForm }) {
                 checkPassword !== formData.password ? "visible" : "invisible"
               } text-red-200 text-[13px]`}
             >
-              Password Unmatched
+              Password Not Matching
             </div>
           </form>
           <div className="flex mt-4 justify-center gap-10">
