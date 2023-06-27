@@ -11,7 +11,7 @@ export default function FollowersList({ setFollowModal }) {
   const navigate = useNavigate();
 
   const {
-    state: { token, user: authUser },
+    state: { user: authUser },
     dispatch,
   } = useContext(AuthContext);
 

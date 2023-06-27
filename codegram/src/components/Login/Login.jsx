@@ -25,8 +25,6 @@ export default function Login() {
           ) : (
             <SignupForm loginForm={loginForm} setLoginForm={setLoginForm} />
           )}
-        {/* <div className="flex-col m-auto mb-32 items-center justify-center p-6 rounded-md bg-[#16181ce5] hover:bg-[#202329]">
-        </div> */}
       </div>
     </div>
   );

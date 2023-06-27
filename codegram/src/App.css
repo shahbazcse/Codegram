@@ -74,15 +74,6 @@
   cursor: pointer;
 }
 
-/* Mockman */
-
-.object-key-val{
-  padding: 4px;
-  margin: 4px;
-  border-radius: 4px;
-  border: 1px solid navy;
-}
-
 /* Edit Profile Modal */
 
 .image {

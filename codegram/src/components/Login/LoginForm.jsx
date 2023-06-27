@@ -38,10 +38,6 @@ export default function LoginForm({ loginForm, setLoginForm }) {
 
   return (
     <>
-      {/* <h1 className="text-white font-bold text-2xl pt-0 p-4 items-center justify-center flex">
-        Login
-      </h1>
-      <hr className="pb-4" /> */}
       {loginError && (
         <div className="alert-error bg-red-400 text-center py-1 rounded-lg">
           {loginError}
@@ -132,7 +128,7 @@ export default function LoginForm({ loginForm, setLoginForm }) {
             </button>
           </div>
           <a
-            href="#"
+            href="/#"
             className="mt-6 block text-sm text-center font-medium text-sky-600 hover:underline focus:outline-none focus:ring-2 focus:ring-sky-500"
           >
             {" "}
@@ -140,52 +136,6 @@ export default function LoginForm({ loginForm, setLoginForm }) {
           </a>
         </div>
       </div>
-
-      {/* <div className="flex-col items-center">
-        <input
-          type="text"
-          className="flex p-2 m-4 rounded-sm"
-          placeholder="Email"
-        />
-        <div className="flex m-4">
-          <input
-            type={showPassword ? "text" : "password"}
-            className="p-2 rounded-sm"
-            aria-hidden
-            placeholder="Password"
-          />
-          <span
-            className="text-slate-500 ml-2 my-2 cursor-pointer"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {!showPassword ? (
-              <VisibilityIcon fontSize="small" />
-            ) : (
-              <VisibilityOffIcon fontSize="small" />
-            )}
-          </span>
-        </div>
-        <div className="flex justify-evenly gap-3">
-          <button
-            className="flex p-2  rounded-sm bg-blue-600 text-white"
-            onClick={handleLogin}
-          >
-            Login
-          </button>
-          <button
-            className="flex p-2 rounded-sm bg-blue-600 text-white"
-            onClick={handleLogin}
-          >
-            Guest Login?
-          </button>
-          <button
-            className="flex p-2 rounded-sm bg-white text-black"
-            onClick={() => setLoginForm(false)}
-          >
-            Sign up?
-          </button>
-        </div>
-      </div> */}
     </>
   );
 }

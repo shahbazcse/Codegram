@@ -16,11 +16,13 @@ export function CreatePostModal({ setCreateModal }) {
 
   const handlePost = async () => {
     setCreateModal(false);
-    const post = {
-      content: newPost,
-    };
-    const posts = await createPost(token, post);
-    dispatch({ type: "setPosts", payload: posts });
+    if (newPost) {
+      const post = {
+        content: newPost,
+      };
+      const posts = await createPost(token, post);
+      dispatch({ type: "setPosts", payload: posts });
+    }
   };
 
   return (

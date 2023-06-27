@@ -8,7 +8,7 @@ import Profile from "./pages/Profile";
 import Login from "./components/Login/Login";
 import RightSidebar from "./components/RightSidebar";
 import Sidebar from "./components/Sidebar";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 import TrendingNews from "./pages/TrendingNews";
 import SingleNews from "./components/Trending/SingleNews";

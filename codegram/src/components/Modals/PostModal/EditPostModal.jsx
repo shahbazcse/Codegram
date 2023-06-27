@@ -1,7 +1,7 @@
 import styles from "../../Modals/Modal.module.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { RiCloseLine } from "react-icons/ri";
-import { doEditPost, getPostDetails } from "../../../services/PostService";
+import { doEditPost } from "../../../services/PostService";
 import { AppContext } from "../../../contexts/AppContext";
 import { AuthContext } from "../../../contexts/AuthContext";
 
