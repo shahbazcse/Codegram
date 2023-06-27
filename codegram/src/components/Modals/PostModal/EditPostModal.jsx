@@ -24,8 +24,8 @@ export function EditPostModal({ setEditModal, post }) {
     <>
       <div className={styles.darkBG} onClick={() => setEditModal(false)} />
       <div className={styles.centered}>
-        <div className={`h-[324px] w-[512px] ${styles.modal}`}>
-          <div className={`ml-40 ${styles.modalHeader}`}>
+        <div className={`h-[324px] sm:w-[512px] w-[380px] ${styles.modal}`}>
+          <div className={`ml-24 sm:ml-40 ${styles.modalHeader}`}>
             <div className={`${styles.heading}`}>Edit Post</div>
             <div
               onClick={() => setEditModal(false)}

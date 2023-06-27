@@ -27,8 +27,8 @@ export function CreatePostModal({ setCreateModal }) {
     <>
       <div className={styles.darkBG} onClick={() => setCreateModal(false)} />
       <div className={styles.centered}>
-        <div className={`h-[324px] w-[512px] ${styles.modal}`}>
-          <div className={`ml-40 ${styles.modalHeader}`}>
+        <div className={`h-[324px] sm:w-[512px] w-[380px] ${styles.modal}`}>
+          <div className={`ml-24 sm:ml-40 ${styles.modalHeader}`}>
             <div className={`${styles.heading}`}>New Post</div>
             <div
               onClick={() => setCreateModal(false)}
@@ -42,7 +42,7 @@ export function CreatePostModal({ setCreateModal }) {
               type="text"
               value={newPost}
               placeholder="What's Happening?!"
-              className="flex mb-4 h-44 p-6 text-white text-md rounded border border-slate-700 bg-black focus:border-blue-400 focus:outline"
+              className="flex mb-4 h-44 p-6 text-white text-[18px] sm:text-md rounded border border-slate-700 bg-black focus:border-blue-400 focus:outline"
               onChange={(e) => setNewPost(e.target.value)}
             />
             <div

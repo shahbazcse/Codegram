@@ -59,7 +59,7 @@ export default function EditProfileModal({
     <>
       <div className={styles.darkBG} onClick={() => setOpenModal(false)} />
       <div className={styles.centered}>
-        <div className={`h-[412px] w-[512px] ${styles.modal}`}>
+        <div className={`h-[412px] sm:w-[512px] w-[380px] ${styles.modal}`}>
           <div className={styles.modalHeader}>
             <div className="flex justify-center items-center">
               <div

@@ -132,7 +132,7 @@ export default function Post({ post }) {
                   />
                 )}
               </h1>
-              <h1 className="text-gray-500">@{post?.username}</h1>
+              <h1 className="hidden xl:inline text-gray-500">@{post?.username}</h1>
               <span className="hidden sm:block text-gray-500 text-[12px] mt-[4px]">
                 •
               </span>
