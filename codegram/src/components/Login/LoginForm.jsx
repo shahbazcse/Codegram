@@ -8,6 +8,7 @@ import { loginUser } from "../../services/AuthService";
 export default function LoginForm({ loginForm, setLoginForm }) {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ username: "", password: "" });
+  const [loginError, setLoginError] = useState("");
 
   const { dispatch } = useContext(AuthContext);
 
@@ -22,8 +23,8 @@ export default function LoginForm({ loginForm, setLoginForm }) {
       dispatch({ type: "setUser", payload: response.user });
     } else if (response.error) {
       dispatch({ type: "setError", payload: response.error });
+      setLoginError(response.error);
     }
-
     navigate(location?.state?.from?.pathname);
   };
 
@@ -41,7 +42,11 @@ export default function LoginForm({ loginForm, setLoginForm }) {
         Login
       </h1>
       <hr className="pb-4" /> */}
-
+      {loginError && (
+        <div className="alert-error bg-red-400 text-center py-1 rounded-lg">
+          {loginError}
+        </div>
+      )}
       <div className="relative bg-[#16181ce5] hover:bg-[#202329] top-[50%] px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg rounded-lg sm:px-10">
         <div className="mx-auto max-w-md">
           <h1 className="text-2xl font-semibold text-white">Welcome back!</h1>

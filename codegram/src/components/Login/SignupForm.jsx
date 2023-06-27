@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { signupUser } from "../../services/AuthService";
-import { dummyFollowers } from '../../backend/db/dummyData';
+import { loginUser, signupUser } from "../../services/AuthService";
+import { dummyFollowers } from "../../backend/db/dummyData";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function SignupForm({ loginForm, setLoginForm }) {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [checkPassword, setCheckPassword] = useState("");
+
+  const { dispatch } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -22,9 +28,18 @@ export default function SignupForm({ loginForm, setLoginForm }) {
     bookmarks: [],
   });
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     signupUser(formData);
-    setLoginForm(true);
+
+    const response = await loginUser(formData);
+
+    if (response.user && response.token) {
+      dispatch({ type: "setToken", payload: response.token });
+      dispatch({ type: "setUser", payload: response.user });
+    } else if (response.error) {
+      dispatch({ type: "setError", payload: response.error });
+    }
+    navigate("/");
   };
 
   return (

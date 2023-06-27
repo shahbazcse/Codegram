@@ -18,6 +18,7 @@ import { AppContext } from "../contexts/AppContext";
 import { useNavigate } from "react-router-dom";
 import { EditPostModal } from "./Modals/PostModal/EditPostModal";
 import { doDeletePost } from "../services/PostService";
+import male from "../assets/avatars/male.png";
 var rn = require("random-number");
 
 var randomNumber = {
@@ -112,7 +113,7 @@ export default function Post({ post }) {
         >
           <img
             className="h-12 w-12 rounded-full object-cover"
-            src={user?.avatar}
+            src={user?.avatar || male}
             alt=""
           />
         </div>
@@ -132,7 +133,9 @@ export default function Post({ post }) {
                   />
                 )}
               </h1>
-              <h1 className="hidden xl:inline text-gray-500">@{post?.username}</h1>
+              <h1 className="hidden xl:inline text-gray-500">
+                @{post?.username}
+              </h1>
               <span className="hidden sm:block text-gray-500 text-[12px] mt-[4px]">
                 •
               </span>
