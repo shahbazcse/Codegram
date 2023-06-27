@@ -20,7 +20,7 @@ export default function Liked() {
           No Posts
         </div>
       )}
-      <div className="overflow-auto">
+      <div className="overflow-auto h-screen">
         {sortedPost.map((post) => (
           <Post key={post._id} post={post} />
         ))}
