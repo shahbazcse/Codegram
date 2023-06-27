@@ -12,7 +12,7 @@ export default function Login() {
       className="container max-w-full h-screen flex bg-black relative max-w-screen m-auto"
       style={{ backgroundImage: `url(${loginBG})` }}
     >
-      <div className="hidden w-[1250px] bg-black h-screen xl:block">
+      <div className="hidden w-[1250px] bg-black xl:block">
         <img src={loginBanner} className="h-screen" alt="" />
       </div>
       <div className="flex-col m-auto">

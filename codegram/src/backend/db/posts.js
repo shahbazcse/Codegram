@@ -1,5 +1,13 @@
 import { v4 as uuid } from "uuid";
 import { formatDate } from "../utils/authUtils";
+import { dummyPosts } from "./dummyData";
+var rn = require("random-number");
+
+var randomNumber = {
+  min: 0,
+  max: 1000,
+  integer: true,
+};
 
 /**
  * Posts can be added here.
@@ -7,82 +15,133 @@ import { formatDate } from "../utils/authUtils";
  * */
 
 export const posts = [
-  {
+  ...dummyPosts.shahbaz.map((post) => ({
     _id: uuid(),
-    content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+    content: post,
     likes: {
-      likeCount: 10,
+      likeCount: rn(randomNumber),
       likedBy: [],
       dislikedBy: [],
     },
     username: "shahbazcse",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-  },
-  {
+  })),
+
+  ...dummyPosts.bruce.map((post) => ({
     _id: uuid(),
-    content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+    content: post,
     likes: {
-      likeCount: 20,
+      likeCount: rn(randomNumber),
       likedBy: [],
       dislikedBy: [],
     },
     username: "bruce",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-  },
-  {
+  })),
+
+  ...dummyPosts.eren.map((post) => ({
     _id: uuid(),
-    content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+    content: post,
     likes: {
-      likeCount: 15,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    username: "shahbazcse",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },
-  {
-    _id: uuid(),
-    content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
-    likes: {
-      likeCount: 8,
+      likeCount: rn(randomNumber),
       likedBy: [],
       dislikedBy: [],
     },
     username: "eren",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-  },
-  {
+  })),
+
+  ...dummyPosts.mikasa.map((post) => ({
     _id: uuid(),
-    content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+    content: post,
     likes: {
-      likeCount: 3,
+      likeCount: rn(randomNumber),
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "mikasa",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  })),
+
+  ...dummyPosts.syeda.map((post) => ({
+    _id: uuid(),
+    content: post,
+    likes: {
+      likeCount: rn(randomNumber),
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "fatima",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  })),
+
+  ...dummyPosts.peter.map((post) => ({
+    _id: uuid(),
+    content: post,
+    likes: {
+      likeCount: rn(randomNumber),
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "peter",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  })),
+
+  ...dummyPosts.tony.map((post) => ({
+    _id: uuid(),
+    content: post,
+    likes: {
+      likeCount: rn(randomNumber),
       likedBy: [],
       dislikedBy: [],
     },
     username: "tony",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-  },
-  {
+  })),
+
+  ...dummyPosts.steve.map((post) => ({
     _id: uuid(),
-    content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+    content: post,
     likes: {
-      likeCount: 235,
+      likeCount: rn(randomNumber),
       likedBy: [],
       dislikedBy: [],
     },
-    username: "shahbazcse",
+    username: "steve",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-  },
+  })),
+
+  ...dummyPosts.mary.map((post) => ({
+    _id: uuid(),
+    content: post,
+    likes: {
+      likeCount: rn(randomNumber),
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "mary",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  })),
+
+  ...dummyPosts.gwen.map((post) => ({
+    _id: uuid(),
+    content: post,
+    likes: {
+      likeCount: rn(randomNumber),
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "gwen",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  })),
 ];

@@ -29,7 +29,7 @@ export default function SignupForm({ loginForm, setLoginForm }) {
 
   return (
     <>
-      <div className="relative bg-[#16181ce5] hover:bg-[#202329] px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg rounded-lg sm:px-10">
+      <div className="relative bg-[#16181ce5] hover:bg-[#202329] top-[50%] px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg rounded-lg sm:px-10">
         <div className="mx-auto max-w-md">
           <h1 className="text-2xl font-semibold text-white">
             Create a new account!
