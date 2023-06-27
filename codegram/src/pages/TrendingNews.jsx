@@ -19,49 +19,55 @@ export default function TrendingNews() {
           No News To Show
         </div>
       )}
-      {trending.map(
-        ({
-          _id,
-          title,
-          urlToImage,
-          author,
-          publishedAt,
-          description,
-          views,
-        }) => (
-          <div key={_id}>
-            <div className="bg-slate-800 text-white m-4 p-4 rounded-md">
-              <Link to={`/trending/${_id}`} className="hover:underline">
-                <h1 className="text-lg font-bold">{title}</h1>
-              </Link>
-              <div className="flex justify-end text-slate-400 my-2">
-                Date: {publishedAt}
-              </div>
-              <div className="m-2 my-3">
-                <img src={urlToImage} alt="" className="h-42 w-42 rounded-md" />
-                <div className="flex items-center justify-between text-slate-400 mt-2">
-                  <div className="mt-2">by {author}</div>
-                  <div className="flex items-center justify-end text-sm mt-2">
-                    <GoEye className="mr-1" />
-                    <span>{views}K views</span>
-                    <TrendingUpIcon className="ml-1 text-red-600" />
+      <div className="border-t border-gray-500 overflow-auto">
+        {trending.map(
+          ({
+            _id,
+            title,
+            urlToImage,
+            author,
+            publishedAt,
+            description,
+            views,
+          }) => (
+            <div key={_id}>
+              <div className="bg-slate-800 text-white m-4 p-4 rounded-md">
+                <Link to={`/trending/${_id}`} className="hover:underline">
+                  <h1 className="text-lg font-bold">{title}</h1>
+                </Link>
+                <div className="flex justify-end text-slate-400 my-2">
+                  Date: {publishedAt}
+                </div>
+                <div className="m-2 my-3">
+                  <img
+                    src={urlToImage}
+                    alt=""
+                    className="h-42 w-42 rounded-md"
+                  />
+                  <div className="flex items-center justify-between text-slate-400 mt-2">
+                    <div className="mt-2">by {author}</div>
+                    <div className="flex items-center justify-end text-sm mt-2">
+                      <GoEye className="mr-1" />
+                      <span>{views}K views</span>
+                      <TrendingUpIcon className="ml-1 text-red-600" />
+                    </div>
                   </div>
                 </div>
+                <p className="my-2">
+                  {description}
+                  <Link
+                    to={`/trending/${_id}`}
+                    className="ml-1 text-slate-400 hover:text-blue-600 underline"
+                  >
+                    Read more
+                  </Link>
+                </p>
               </div>
-              <p className="my-2">
-                {description}
-                <Link
-                  to={`/trending/${_id}`}
-                  className="ml-1 text-slate-400 hover:text-blue-600 underline"
-                >
-                  Read more
-                </Link>
-              </p>
+              <hr className="m-5" />
             </div>
-            <hr className="m-5" />
-          </div>
-        )
-      )}
+          )
+        )}
+      </div>
     </div>
   );
 }
