@@ -1,7 +1,11 @@
 import { useContext } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { doUnfollowUser, editUserProfile, getAllUsers } from "../../../services/UserService";
+import {
+  doUnfollowUser,
+  editUserProfile,
+  getAllUsers,
+} from "../../../services/UserService";
 import { useNavigate, useParams } from "react-router-dom";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
@@ -16,7 +20,8 @@ export default function FollowingList({ setFollowModal }) {
   } = useContext(AuthContext);
 
   const {
-    state: { allUsers }, dispatch: AppDispatch
+    state: { allUsers },
+    dispatch: AppDispatch,
   } = useContext(AppContext);
 
   const currentUser =
@@ -26,7 +31,6 @@ export default function FollowingList({ setFollowModal }) {
 
   const handleUnfollowUser = async (userId) => {
     const response = await doUnfollowUser(token, userId);
-    console.log(response);
     const data = {
       ...user,
       following: [
@@ -54,9 +58,6 @@ export default function FollowingList({ setFollowModal }) {
         <div
           key={user._id}
           className="flex items-start justify-start gap-2 p-3"
-          onClick={() => {
-            console.log("Open User Profile");
-          }}
         >
           <img
             src={user.avatar}
@@ -85,15 +86,17 @@ export default function FollowingList({ setFollowModal }) {
             </span>
           </div>
 
-          {currentUser.username === paramsUsername && <button
-            className="bg-white text-sm hover:bg-red-600 text-black py-1 px-4 my-2 rounded-full"
-            onClick={(e) => {
-              e.stopPropagation();
-              handleUnfollowUser(user._id);
-            }}
-          >
-            Unfollow
-          </button>}
+          {currentUser.username === paramsUsername && (
+            <button
+              className="bg-white text-sm hover:bg-red-600 text-black py-1 px-4 my-2 rounded-full"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleUnfollowUser(user._id);
+              }}
+            >
+              Unfollow
+            </button>
+          )}
         </div>
       ))}
     </div>

@@ -28,9 +28,6 @@ export default function SearchUserModal({ query, setQuery }) {
         <div
           key={user._id}
           className="flex items-start justify-start gap-2 p-3 hover:bg-gray-800 rounded-[20px]"
-          onClick={() => {
-            console.log("Open User Profile");
-          }}
         >
           <img
             src={user.avatar}

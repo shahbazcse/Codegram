@@ -26,7 +26,6 @@ export default function FollowersList({ setFollowModal }) {
       : allUsers.find(({ username }) => username === paramsUsername);
 
   const handleRemoveFollower = async (userId) => {
-    console.log("Removed follower");
     const updatedUser = {
       ...authUser,
       followers: authUser.followers.filter(({ _id }) => _id !== userId),
@@ -47,9 +46,6 @@ export default function FollowersList({ setFollowModal }) {
             <div
               key={user._id}
               className="flex items-start justify-start gap-2 cursor-pointer p-3"
-              onClick={() => {
-                console.log("Open User Profile");
-              }}
             >
               <img
                 src={user.avatar}

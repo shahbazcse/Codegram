@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 import Post from "../components/Post";
 import { AuthContext } from "../contexts/AuthContext";

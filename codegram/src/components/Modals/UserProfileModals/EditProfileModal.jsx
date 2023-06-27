@@ -51,7 +51,6 @@ export default function EditProfileModal({
           : { ...p }
       ),
     ];
-    console.log(updatedAllUsers);
     AppDispatch({ type: "setAllUsers", payload: updatedAllUsers });
     setOpenModal(false);
   };

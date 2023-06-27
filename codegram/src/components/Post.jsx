@@ -91,9 +91,7 @@ export default function Post({ post }) {
     dispatch({ type: "setPosts", payload: posts });
   };
 
-  const openModal = () => {
-    console.log("opening model ");
-  };
+  const openChatModal = () => {};
 
   const bookmarked = bookmarks.find(({ _id }) => _id === post._id);
   const isLiked = liked.find(({ _id }) => _id === post._id);
@@ -167,7 +165,7 @@ export default function Post({ post }) {
                 className="hoverEffect w-7 h-7 p-1"
                 onClick={(e) => {
                   e.stopPropagation();
-                  openModal();
+                  openChatModal();
                 }}
               />
             </div>

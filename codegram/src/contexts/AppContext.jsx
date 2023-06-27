@@ -51,37 +51,15 @@ export function AppProvider({ children }) {
           ...state,
           posts: action.payload,
         };
-      case "setUserAvatar":
-        return {
-          ...state,
-          userAvatar: action.payload,
-        };
       case "setBookmarks":
         return setBooksmarks(state, action);
       case "setLikes":
         return setLikes(state);
-      case "setFollowing":
-        console.log(action.payload);
-        return {
-          ...state,
-          following: [...state.following, action.payload],
-        };
-      case "setFollowers":
-        return {
-          ...state,
-          followers: [...state.followers, action.payload],
-        };
       case "setTrending":
         return {
           ...state,
           trending: action.payload,
         };
-      case "blueTick":
-        return {
-          ...state,
-          isVerified: true,
-        };
-
       default:
         return state;
     }
@@ -93,7 +71,6 @@ export function AppProvider({ children }) {
     bookmarks: [],
     liked: [],
     trending: [],
-    isVerified: false,
   };
 
   const [state, dispatch] = useReducer(reducerFn, initialState);

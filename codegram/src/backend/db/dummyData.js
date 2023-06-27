@@ -357,6 +357,8 @@ export const dummyPosts = {
 };
 
 export const dummyBio = {
+  shahbaz:
+    "👨‍💻 Programmer Extraordinaire 🚀 Passionate about coding, problem-solving, and creating elegant software solutions. Constantly exploring new technologies and frameworks to stay at the forefront of innovation. Clean code enthusiast. Team player and excellent communicator. Let's build something amazing together! #Programmer #CodingLife #TechEnthusiast",
   bruce: "🦇 Billionaire by day, crime-fighting vigilante by night. 🌃",
   eren: "🔥 A passionate and determined soldier fighting for humanity's survival against the Titans. ⚔️🛡️",
   mikasa:
@@ -373,13 +375,14 @@ export const dummyBio = {
 };
 
 export const dummyLink = {
-  bruce: "www.batmanssecretdisguise.com",
-  eren: "www.titanhugger.com",
-  mikasa: "www.expertscarfreestyles.com",
-  syeda: "www.worldsbeststudent.com",
-  peter: "www.howtosticktoceilings101.com",
-  tony: "www.confidentlycockygenius.com",
-  steve: "www.howtogrowabeardquickly.com",
-  mary: "www.professionalredheadsociety.com",
-  gwen: "www.musicianspiderweb.com",
+  shahbaz: "https://github.com/shahbazcse",
+  bruce: "https://batmanssecretdisguise.com",
+  eren: "https://titanhugger.com",
+  mikasa: "https://expertscarfreestyles.com",
+  syeda: "https://worldsbeststudent.com",
+  peter: "https://howtosticktoceilings101.com",
+  tony: "https://confidentlycockygenius.com",
+  steve: "https://howtogrowabeardquickly.com",
+  mary: "https://professionalredheadsociety.com",
+  gwen: "https://musicianspiderweb.com",
 };

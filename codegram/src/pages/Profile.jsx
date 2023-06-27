@@ -166,7 +166,7 @@ export default function Profile() {
             <h1 className="m-2 font-bold">Link</h1>
             <div className="bg-[#16181C] p-2 rounded-md m-auto flex items-center justify-center">
               {currentUser?.portfolioURL ? (
-                <a href="#" className="text-blue-600 hover:underline">
+                <a href={currentUser?.portfolioURL} target="_blank" className="text-blue-600 hover:underline">
                   {currentUser?.portfolioURL}
                 </a>
               ) : (

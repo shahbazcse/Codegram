@@ -3,7 +3,6 @@ import {
   doFollowUser,
   editUserProfile,
   getAllUsers,
-  updateFollowUser,
 } from "../../services/UserService";
 import { AuthContext } from "../../contexts/AuthContext";
 import { AppContext } from "../../contexts/AppContext";
