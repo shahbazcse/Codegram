@@ -6,7 +6,7 @@ import { dummyFollowers } from "../../backend/db/dummyData";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-export default function SignupForm({ loginForm, setLoginForm }) {
+export default function SignupForm({ setLoginForm }) {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
