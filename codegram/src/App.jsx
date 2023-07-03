@@ -17,6 +17,7 @@ import About from "./pages/About";
 import MobileNavBar from "./components/MobileNavBar";
 
 function App() {
+  // store and use token from local storage to persist session state on hard refresh
   const {
     state: { token },
   } = useContext(AuthContext);
