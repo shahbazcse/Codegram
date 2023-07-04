@@ -15,6 +15,8 @@ export default function LoginForm({ setLoginForm }) {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // store token and user data to localStorage upon login
+  
   const handleLogin = async () => {
     const response = await loginUser(formData);
 
