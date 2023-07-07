@@ -15,9 +15,15 @@ export const loginUser = async (loginFormData) => {
   } catch (e) {
     session = { ...session, error: e.response.data.errors[0] };
   }
+  localStorage.setItem("session", JSON.stringify(session));
   return session;
 };
 
-export const signupUser = (formData) => {
-  axios.post("/api/auth/signup", formData);
+export const signupUser = async (formData) => {
+  const response = await axios.post("/api/auth/signup", formData);
+  const session = {
+    user: response.data.foundUser,
+    token: response.data.encodedToken,
+  };
+  localStorage.setItem("session", JSON.stringify(session));
 };

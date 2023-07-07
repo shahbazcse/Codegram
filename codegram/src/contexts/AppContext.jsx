@@ -14,18 +14,22 @@ var randomNumber = {
 export const AppContext = createContext();
 
 export function AppProvider({ children }) {
+  const session = JSON.parse(localStorage.getItem("session"));
+
   const {
     state: { token, user },
   } = useContext(AuthContext);
 
   const setBooksmarks = (state, action) => {
     const myBookmarks = state.posts.filter(({ _id }) =>
-      action.payload.includes(_id)
+      action?.payload?.includes(_id)
     );
+
+    const localStorage = session?.user.bookmarks;
 
     return {
       ...state,
-      bookmarks: myBookmarks,
+      bookmarks: myBookmarks || localStorage,
     };
   };
 
@@ -87,14 +91,12 @@ export function AppProvider({ children }) {
   };
 
   useEffect(() => {
-    if (!token) {
-      getData();
-      (async () => {
-        const response = await getAllUsers();
-        dispatch({ type: "setAllUsers", payload: response });
-      })();
-    }
-  });
+    getData();
+    (async () => {
+      const response = await getAllUsers();
+      dispatch({ type: "setAllUsers", payload: response });
+    })();
+  }, []);
 
   // External API Data
 

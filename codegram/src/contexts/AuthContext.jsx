@@ -3,6 +3,8 @@ import { createContext, useReducer } from "react";
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
+  const session = JSON.parse(localStorage.getItem("session"));
+
   const reducerFn = (state, action) => {
     switch (action.type) {
       case "setToken":
@@ -36,8 +38,8 @@ export function AuthProvider({ children }) {
   };
 
   const initialState = {
-    token: null,
-    user: null,
+    token: session?.token,
+    user: session?.user,
     error: null,
     loginFormData: { username: "", password: "" },
     signupFormData: {},

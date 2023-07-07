@@ -29,6 +29,7 @@ export default function Sidebar({ drawer, setDrawer }) {
 
   const handleLogout = () => {
     dispatch({ type: "setToken", payload: null });
+    localStorage.clear();
   };
 
   const userAvatar = user.avatar ? user.avatar : male;
