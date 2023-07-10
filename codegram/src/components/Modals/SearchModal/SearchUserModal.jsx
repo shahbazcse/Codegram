@@ -18,7 +18,7 @@ export default function SearchUserModal({ query, setQuery }) {
   );
 
   return (
-    <div className="flex-col bg-[#16181C] mt-2 h-56 p-2 overflow-auto rounded-[16px]">
+    <div className="flex flex-col absolute bg-[#0e0f11] border-[1px] border-slate-800 mt-2 h-[15rem] w-[350px] p-2 overflow-auto rounded-[16px]">
       {!filteredUsers.length && (
         <div className="flex m-auto my-24 text-center font-bold text-xl justify-center">
           No Users Found
@@ -27,7 +27,7 @@ export default function SearchUserModal({ query, setQuery }) {
       {filteredUsers.map((user) => (
         <div
           key={user._id}
-          className="flex items-start justify-start gap-2 p-3 hover:bg-gray-800 rounded-[20px]"
+          className="flex relative items-start justify-start gap-2 p-3 hover:bg-gray-800 rounded-[20px]"
         >
           <img
             src={user.avatar}
