@@ -14,8 +14,6 @@ var randomNumber = {
 export const AppContext = createContext();
 
 export function AppProvider({ children }) {
-  const session = JSON.parse(localStorage.getItem("session"));
-
   const {
     state: { token, user },
   } = useContext(AuthContext);
@@ -24,18 +22,15 @@ export function AppProvider({ children }) {
     const myBookmarks = state.posts.filter(({ _id }) =>
       action?.payload?.includes(_id)
     );
-
-    const localStorage = session?.user.bookmarks;
-
     return {
       ...state,
-      bookmarks: myBookmarks || localStorage,
+      bookmarks: myBookmarks,
     };
   };
 
   const setLikes = (state) => {
     const myLikes = state.posts.filter(({ likes: { likedBy } }) =>
-      likedBy.find(({ _id }) => _id === user._id)
+      likedBy.find(({ username }) => username === user.username)
     );
     return {
       ...state,
