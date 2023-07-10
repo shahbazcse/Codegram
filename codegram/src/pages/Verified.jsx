@@ -1,5 +1,5 @@
 import VerifiedIcon from "@mui/icons-material/Verified";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
@@ -16,6 +16,10 @@ export default function Verified() {
     };
     dispatch({ type: "setUser", payload: updatedUser });
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="h-[56rem] sm:h-0">

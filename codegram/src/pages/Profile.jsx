@@ -1,5 +1,5 @@
 import UserFeed from "../components/Feeds/UserFeed";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../contexts/AppContext";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -85,6 +85,10 @@ export default function Profile() {
     (p) => p.username === currentUser.username
   );
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="">
       <div className="sm:sticky top-0 bg-black text-center justify-between font-medium text-[20px] px-4 py-2">
@@ -166,7 +170,12 @@ export default function Profile() {
             <h1 className="m-2 font-bold">Link</h1>
             <div className="bg-[#16181C] p-2 rounded-md m-auto flex items-center justify-center">
               {currentUser?.portfolioURL ? (
-                <a href={currentUser?.portfolioURL} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline">
+                <a
+                  href={currentUser?.portfolioURL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
                   {currentUser?.portfolioURL}
                 </a>
               ) : (

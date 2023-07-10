@@ -2,8 +2,12 @@ import shahbaz from "../assets/avatars/shahbaz.jpg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import { useEffect } from "react";
 
 export default function About() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="h-[56rem] sm:h-0">
       <div className="sm:sticky top-0 bg-black  text-center justify-between px-4 py-2">

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../contexts/AppContext";
 import { Link } from "react-router-dom";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
@@ -8,6 +8,10 @@ export default function TrendingNews() {
   const {
     state: { trending },
   } = useContext(AppContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>
