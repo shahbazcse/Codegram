@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logos/messages.png";
 import SidebarLink from "./SidebarLink";
 import HomeIcon from "@mui/icons-material/Home";
@@ -18,7 +18,9 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import male from "../assets/avatars/male.png";
 import SearchModalMobile from "./Modals/SearchModal/SearchModalMobile";
 
-export default function Sidebar({ drawer, setDrawer }) {
+export default function Sidebar() {
+  const navigate = useNavigate();
+
   const {
     state: { user },
     dispatch,
@@ -35,21 +37,9 @@ export default function Sidebar({ drawer, setDrawer }) {
   const userAvatar = user.avatar ? user.avatar : male;
 
   return (
-    <div
-      className={`${
-        drawer ? "ml-[8px] mt-0" : "hidden"
-      } sm:flex flex-col items-center xl:items-start xl:w-[380px] p-4 fixed h-full pr-8 xl:pr-8`}
-    >
+    <div className="ml-[8px] mt-0 sm:flex flex-col items-center xl:items-start xl:w-[380px] p-4 fixed h-full pr-8 xl:pr-8">
       {createModal && <CreatePostModal setCreateModal={setCreateModal} />}
       {searchModal && <SearchModalMobile setSearchModal={setSearchModal} />}
-      {drawer && (
-        <div
-          className="sm:hidden mb-8 font-light text-6xl px-2 cursor-pointer text-red-500"
-          onClick={() => setDrawer(false)}
-        >
-          &times;
-        </div>
-      )}
       <div className="flex items-center justify-center w-14 h-14 hoverEffect p-0 xl:mb-10 xl:ml-28">
         <Link to="/">
           <div className="flex pt-22">
@@ -87,16 +77,13 @@ export default function Sidebar({ drawer, setDrawer }) {
         <div onClick={() => setSearchModal(true)} className="md:hidden">
           <SidebarLink text="" Icon={SearchIcon} />
         </div>
-        <div className="">
-          <div
-            onClick={() => handleLogout()}
-            className="xl:mt-48 md:mt-[500%] sm:mt-[400%] mt-[260%]"
-          >
+        <div className="flex flex-col gap-4 pt-16">
+          <div onClick={() => handleLogout()}>
             <SidebarLink text="Logout" Icon={LogoutIcon} />
           </div>
-          <Link
-            to={`/profile/${user?.username}`}
-            className="text-[#d9d9d9] mt-4 flex items-center justify-center xl:justify-start hover:bg-slate-800 hover:rounded-full px-1 py-1 w-fit"
+          <div
+            onClick={() => navigate(`/profile/${user?.username}`)}
+            className="text-[#d9d9d9] flex items-center justify-center xl:justify-start hover:bg-slate-800 hover:rounded-full px-1 py-1 w-fit cursor-pointer"
           >
             <img
               src={userAvatar}
@@ -117,7 +104,7 @@ export default function Sidebar({ drawer, setDrawer }) {
               </div>
               <p className="text-[#6e767d]">@{user?.username}</p>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </div>
