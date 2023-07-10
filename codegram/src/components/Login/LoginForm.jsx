@@ -15,11 +15,7 @@ export default function LoginForm({ setLoginForm }) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // store token and user data to localStorage upon login
-  
-  const handleLogin = async () => {
-    const response = await loginUser(formData);
-
+  const authenticateUser = (response) => {
     if (response.user && response.token) {
       dispatch({ type: "setToken", payload: response.token });
       dispatch({ type: "setUser", payload: response.user });
@@ -27,15 +23,21 @@ export default function LoginForm({ setLoginForm }) {
       dispatch({ type: "setError", payload: response.error });
       setLoginError(response.error);
     }
+  };
+
+  const handleLogin = async () => {
+    const response = await loginUser(formData);
+    authenticateUser(response);
     navigate(location?.state?.from?.pathname);
   };
 
-  const handleGuestLogin = () => {
-    setFormData({
-      ...formData,
+  const handleGuestLogin = async () => {
+    const response = await loginUser({
       username: "shahbazcse",
       password: "shahbaz123",
     });
+    authenticateUser(response);
+    navigate(location?.state?.from?.pathname);
   };
 
   return (
