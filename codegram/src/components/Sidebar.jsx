@@ -37,7 +37,7 @@ export default function Sidebar() {
   const userAvatar = user.avatar ? user.avatar : male;
 
   return (
-    <div className="hidden ml-[8px] mt-0 sm:flex flex-col items-center xl:items-start xl:w-[380px] p-4 fixed h-full pr-8 xl:pr-8">
+    <div className="ml-[8px] mt-0 sm:flex flex-col items-center xl:items-start xl:w-[380px] p-4 fixed h-full pr-8 xl:pr-8">
       {createModal && <CreatePostModal setCreateModal={setCreateModal} />}
       {searchModal && <SearchModalMobile setSearchModal={setSearchModal} />}
       <div className="flex items-center justify-center w-14 h-14 hoverEffect p-0 xl:mb-10 xl:ml-28">
@@ -77,7 +77,7 @@ export default function Sidebar() {
         <div onClick={() => setSearchModal(true)} className="md:hidden">
           <SidebarLink text="" Icon={SearchIcon} />
         </div>
-        <div className="flex flex-col gap-4 pt-16">
+        <div className="flex flex-col gap-4">
           <div onClick={() => handleLogout()}>
             <SidebarLink text="Logout" Icon={LogoutIcon} />
           </div>
