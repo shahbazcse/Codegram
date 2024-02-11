@@ -44,7 +44,7 @@ export default function SuggestedUserMobile() {
       <div className="text-[20px] sticky font-bold text-center">
         Suggested Users
       </div>
-      <div className="flex gap-3 overflow-auto">
+      <div className="flex gap-3 overflow-auto no-scrollbar">
         {filteredUsers.length ? (
           <div className="flex gap-2">
             {filteredUsers.map((user) => (
