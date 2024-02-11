@@ -44,7 +44,7 @@ export default function SignupForm({ setLoginForm }) {
 
   return (
     <>
-      <div className="relative bg-[#16181ce5] hover:bg-[#202329] top-[50%] px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg rounded-lg sm:px-10">
+      <div className="relative bg-[#16181ce5] hover:bg-[#202329] top-[50%] px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg rounded-lg sm:px-14">
         <div className="mx-auto max-w-md">
           <h1 className="text-2xl font-semibold text-white">
             Create a new account!
@@ -55,7 +55,7 @@ export default function SignupForm({ setLoginForm }) {
                 id="username"
                 name="username"
                 type="text"
-                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
+                className="peer rounded-sm h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
                 placeholder="john@doe.com"
                 onChange={(e) =>
                   setFormData({ ...formData, username: e.target.value })
@@ -83,7 +83,7 @@ export default function SignupForm({ setLoginForm }) {
                 id="fname"
                 name="fname"
                 type="text"
-                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
+                className="peer rounded-sm h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
                 placeholder="john@doe.com"
                 onChange={(e) =>
                   setFormData({ ...formData, firstName: e.target.value })
@@ -108,7 +108,7 @@ export default function SignupForm({ setLoginForm }) {
                 id="lname"
                 name="lname"
                 type="text"
-                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
+                className="peer rounded-sm h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
                 placeholder="john@doe.com"
                 onChange={(e) =>
                   setFormData({ ...formData, lastName: e.target.value })
@@ -133,7 +133,7 @@ export default function SignupForm({ setLoginForm }) {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 name="password"
-                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-600"
+                className="peer rounded-sm h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-600"
                 placeholder="Password"
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
@@ -161,7 +161,7 @@ export default function SignupForm({ setLoginForm }) {
                 id="confirmpassword"
                 type={showPassword ? "text" : "password"}
                 name="confirmpassword"
-                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-600"
+                className="peer rounded-sm h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-600"
                 placeholder="Password"
                 onChange={(e) => setCheckPassword(e.target.value)}
               />
@@ -183,16 +183,15 @@ export default function SignupForm({ setLoginForm }) {
               </label>
             </div>
             <div
-              className={`text-center ${
-                checkPassword !== formData.password ? "visible" : "invisible"
-              } text-red-200 text-[13px]`}
+              className={`text-center ${checkPassword !== formData.password ? "visible" : "invisible"
+                } text-red-200 text-[13px]`}
             >
               Password Not Matching
             </div>
           </form>
-          <div className="flex mt-4 justify-center gap-10">
+          <div className="flex flex-wrap justify-center gap-6">
             <button
-              className="flex p-2  rounded bg-blue-600 hover:bg-blue-700 text-white"
+              className="flex px-4 py-2  rounded bg-blue-600 hover:bg-blue-700 text-white cursor-pointer"
               onClick={handleSignup}
               disabled={
                 checkPassword !== formData.password || !formData.password.length
@@ -201,7 +200,7 @@ export default function SignupForm({ setLoginForm }) {
               Sign up
             </button>
             <button
-              className="flex p-2 rounded bg-white hover:bg-slate-200 text-black"
+              className="flex px-6 py-2 rounded bg-white hover:bg-slate-200 text-black"
               onClick={() => setLoginForm(true)}
             >
               Login?

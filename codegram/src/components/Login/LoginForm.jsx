@@ -57,7 +57,7 @@ export default function LoginForm({ setLoginForm }) {
                 name="username"
                 type="text"
                 value={formData.username}
-                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
+                className="peer rounded-sm h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-500"
                 placeholder="john@doe.com"
                 onChange={(e) =>
                   setFormData({ ...formData, username: e.target.value })
@@ -86,7 +86,7 @@ export default function LoginForm({ setLoginForm }) {
                 type={showPassword ? "text" : "password"}
                 value={formData.password}
                 name="password"
-                className="peer h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-600"
+                className="peer rounded-sm h-10 pl-2 mt-2 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-sky-600"
                 placeholder="Password"
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
@@ -110,26 +110,28 @@ export default function LoginForm({ setLoginForm }) {
               </label>
             </div>
           </form>
-          <div className="flex mt-8 justify-evenly gap-3">
+          <div className="flex items-start justify-center flex-wrap mt-8 gap-4">
             <button
-              className="flex p-2  rounded bg-blue-600 hover:bg-blue-700 text-white"
+              className="flex px-6 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white cursor-pointer"
               onClick={handleLogin}
               disabled={!formData.username.length || !formData.username.length}
             >
               Login
             </button>
-            <button
-              className="flex p-2 rounded bg-blue-600 hover:bg-blue-700 text-white"
-              onClick={handleGuestLogin}
-            >
-              Guest Login?
-            </button>
-            <button
-              className="flex p-2 rounded bg-white hover:bg-slate-200 text-black"
-              onClick={() => setLoginForm(false)}
-            >
-              Sign up?
-            </button>
+            <div className="flex items-start justify-center flex-wrap gap-4">
+              <button
+                className="flex px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white"
+                onClick={handleGuestLogin}
+              >
+                Guest Login?
+              </button>
+              <button
+                className="flex px-4 py-2 rounded bg-white hover:bg-slate-200 text-black"
+                onClick={() => setLoginForm(false)}
+              >
+                Sign up?
+              </button>
+            </div>
           </div>
           <a
             href="/#"

@@ -31,14 +31,11 @@ export default function Login() {
         />
       )}
       {!isLoading && (
-        <>
-          <div className="hidden w-[1250px] bg-black xl:block">
-            <img src={loginBanner} className="h-screen" alt="" />
-          </div>
+        <div className="flex items-center justify-center mx-auto">
           <div className="flex-col m-auto">
-            <div className="xl:hidden flex items-center justify-center p-8">
+            <div className="flex items-center justify-center p-8">
               <img src={logo} alt="" height="44px" width="44px" />
-              <span className="text-white text-3xl font-logo1 ml-3">
+              <span className="text-white text-3xl md:text-5xl font-logo1 ml-3">
                 Codegram
               </span>
             </div>
@@ -48,7 +45,7 @@ export default function Login() {
               <SignupForm setLoginForm={setLoginForm} />
             )}
           </div>
-        </>
+        </div>
       )}
     </div>
   );
