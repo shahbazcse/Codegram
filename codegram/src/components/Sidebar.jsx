@@ -50,34 +50,36 @@ export default function Sidebar() {
           </div>
         </Link>
       </div>
-      <div className="space-y-4 mt-4 mb-2.5 xl:ml-24">
-        <SidebarLink to="/" text="Home" Icon={HomeIcon} />
-        <SidebarLink to="/explore" text="Explore" Icon={ExploreIcon} />
-        <SidebarLink to="/bookmarks" text="Bookmarks" Icon={BookmarksIcon} />
-        <SidebarLink to="/liked" text="Liked Posts" Icon={FavoriteIcon} />
-        <SidebarLink text="Trending" to="/trending" Icon={MovingIcon} />
-        <SidebarLink
-          text="Verified"
-          to="/verified"
-          Icon={VerifiedOutlinedIcon}
-        />
-        <SidebarLink text="About" to="/about" Icon={InfoOutlinedIcon} />
+      <div className="sm:flex flex-col items-center gap-10">
+        <div className="space-y-4 mt-4 mb-2.5 xl:ml-24">
+          <SidebarLink to="/" text="Home" Icon={HomeIcon} />
+          <SidebarLink to="/explore" text="Explore" Icon={ExploreIcon} />
+          <SidebarLink to="/bookmarks" text="Bookmarks" Icon={BookmarksIcon} />
+          <SidebarLink to="/liked" text="Liked Posts" Icon={FavoriteIcon} />
+          <SidebarLink text="Trending" to="/trending" Icon={MovingIcon} />
+          <SidebarLink
+            text="Verified"
+            to="/verified"
+            Icon={VerifiedOutlinedIcon}
+          />
+          <SidebarLink text="About" to="/about" Icon={InfoOutlinedIcon} />
 
-        <div onClick={() => setCreateModal(true)}>
-          <Link className="text-[#d9d9d9] flex items-center justify-center xl:justify-start text-xl space-x-3 px-4 xl:py-2 pb-3 w-fit">
-            <span className="xl:hidden">
-              <AddCircleIcon />
-            </span>
-            <span className="hidden xl:inline px-12 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-full">
-              Post
-            </span>
-          </Link>
-        </div>
+          <div onClick={() => setCreateModal(true)}>
+            <Link className="text-[#d9d9d9] flex items-center justify-center xl:justify-start text-xl space-x-3 px-4 xl:py-2 pb-3 w-fit">
+              <span className="xl:hidden">
+                <AddCircleIcon />
+              </span>
+              <span className="hidden xl:inline px-12 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-full">
+                Post
+              </span>
+            </Link>
+          </div>
 
-        <div onClick={() => setSearchModal(true)} className="md:hidden">
-          <SidebarLink text="" Icon={SearchIcon} />
+          <div onClick={() => setSearchModal(true)} className="md:hidden">
+            <SidebarLink text="" Icon={SearchIcon} />
+          </div>
         </div>
-        <div className="flex flex-col gap-4 pt-24">
+        <div className="flex flex-col xl:items-start mx-auto gap-4 pl-2 xl:pl-20 bottom-0 relative">
           <div onClick={() => handleLogout()}>
             <SidebarLink text="Logout" Icon={LogoutIcon} />
           </div>
